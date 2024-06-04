@@ -45,6 +45,8 @@ jobs:
           git config --global --list
           git merge upstream/master
           git push origin master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send POST request
         if: steps.changes.outputs.changes_detected == 'true'
