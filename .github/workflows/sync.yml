@@ -26,6 +26,8 @@ jobs:
           if [ "$UPSTREAM_REF" != "$LOCAL_REF" ]; then
             echo "Changes detected"
             git merge upstream/master --allow-unrelated-histories
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git push origin master
           else
             echo "No changes detected"
