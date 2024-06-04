@@ -33,10 +33,10 @@ jobs:
           LOCAL_REF=$(git rev-parse HEAD)
           if [ "$UPSTREAM_REF" != "$LOCAL_REF" ]; then
             echo "Changes detected"
-            echo "::set-output name=changes_detected::true"
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
           else
             echo "No changes detected"
-            echo "::set-output name=changes_detected::false"
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Merge Upstream changes
