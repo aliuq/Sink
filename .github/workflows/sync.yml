@@ -39,13 +39,12 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Merge Upstream changes
-        if: steps.changes.outputs.changes_detected == 'true'
-        run: git merge upstream/master --allow-unrelated-histories
-
-      - name: Push changes
+      - name: Merge Upstream changes && Push changes
         if: steps.changes.outputs.changes_detected == 'true'
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git merge upstream/master --allow-unrelated-histories
           git push origin master
 
       - name: Send POST request
