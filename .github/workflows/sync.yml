@@ -43,7 +43,7 @@ jobs:
         if: steps.changes.outputs.changes_detected == 'true'
         run: |
           git config --global --list
-          git merge upstream/master
+          git merge upstream/master --allow-unrelated-histories
           git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
