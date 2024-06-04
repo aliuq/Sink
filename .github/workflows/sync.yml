@@ -27,7 +27,7 @@ jobs:
           LOCAL_REF=$(git rev-parse HEAD)
           if [ "$UPSTREAM_REF" != "$LOCAL_REF" ]; then
             echo "Changes detected"
-            git merge upstream/master
+            git merge upstream/master --allow-unrelated-histories
             git push origin master
           else
             echo "No changes detected"
