@@ -1,0 +1,54 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # 每4小时运行一次
+  workflow_dispatch: # 手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'auto-sync[bot]'
+          git config --global user.email 'auto-sync[bot]@github.com'
+
+      - name: Add Upstream
+        run: git remote add upstream https://github.com/ccbikai/Sink.git
+
+      - name: Fetch Upstream
+        run: git fetch upstream
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git fetch upstream master
+          UPSTREAM_REF=$(git rev-parse upstream/master)
+          LOCAL_REF=$(git rev-parse HEAD)
+          if [ "$UPSTREAM_REF" != "$LOCAL_REF" ]; then
+            echo "::set-output name=changes_detected::true"
+          else
+            echo "::set-output name=changes_detected::false"
+          fi
+
+      - name: Merge Upstream changes
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: git merge upstream/master
+
+      - name: Push changes
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: |
+          git push origin HEAD:master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send POST request
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: |
+          curl -X POST "${{ secrets.WEBHOOK_URL }}"
