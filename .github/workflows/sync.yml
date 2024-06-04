@@ -14,10 +14,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: Setup Git
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Add Upstream
         run: git remote add upstream https://github.com/ccbikai/Sink.git
