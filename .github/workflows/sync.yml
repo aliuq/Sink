@@ -43,8 +43,3 @@ jobs:
 
       - name: Show value of 'has_new_commits'
         run: echo ${{ steps.sync.outputs.has_new_commits }}
-
-      - name: Send POST request
-        if: steps.sync.outputs.has_new_commits == 'true'
-        run: |
-          curl -X POST "${{ secrets.WEBHOOK_URL }}"
