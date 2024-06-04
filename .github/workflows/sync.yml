@@ -41,7 +41,7 @@ jobs:
 
       - name: Merge Upstream changes
         if: steps.changes.outputs.changes_detected == 'true'
-        run: git merge upstream/master
+        run: git merge upstream/master --allow-unrelated-histories
 
       - name: Push changes
         if: steps.changes.outputs.changes_detected == 'true'
