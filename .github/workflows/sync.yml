@@ -43,8 +43,8 @@ jobs:
       - name: Merge Upstream changes && Push changes
         if: steps.changes.outputs.changes_detected == 'true'
         run: |
-          git merge upstream/master --allow-unrelated-histories
-          git push origin master --force
+          git merge upstream/master
+          git push origin master
 
       - name: Send POST request
         if: steps.changes.outputs.changes_detected == 'true'
