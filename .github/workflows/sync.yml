@@ -16,8 +16,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config --global user.name 'auto-sync[bot]'
-          git config --global user.email 'auto-sync[bot]@github.com'
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Add Upstream
         run: git remote add upstream https://github.com/ccbikai/Sink.git
@@ -46,7 +46,7 @@ jobs:
       - name: Push changes
         if: steps.changes.outputs.changes_detected == 'true'
         run: |
-          git push origin HEAD:master
+          git push origin master
 
       - name: Send POST request
         if: steps.changes.outputs.changes_detected == 'true'
