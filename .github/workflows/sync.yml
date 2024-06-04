@@ -32,8 +32,10 @@ jobs:
           UPSTREAM_REF=$(git rev-parse upstream/master)
           LOCAL_REF=$(git rev-parse HEAD)
           if [ "$UPSTREAM_REF" != "$LOCAL_REF" ]; then
+            echo "Changes detected"
             echo "::set-output name=changes_detected::true"
           else
+            echo "No changes detected"
             echo "::set-output name=changes_detected::false"
           fi
 
