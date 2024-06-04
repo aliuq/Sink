@@ -42,7 +42,7 @@ jobs:
       - name: Merge Upstream changes && Push changes
         if: steps.changes.outputs.changes_detected == 'true'
         run: |
-          git config --global --list
+          git config --list
           git merge upstream/master --allow-unrelated-histories
           git push origin master
         env:
