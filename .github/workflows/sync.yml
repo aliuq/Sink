@@ -18,6 +18,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/ccbikai/Sink.git
           git fetch upstream
           git fetch upstream master
@@ -26,8 +28,6 @@ jobs:
           if [ "$UPSTREAM_REF" != "$LOCAL_REF" ]; then
             echo "Changes detected"
             git merge upstream/master --allow-unrelated-histories
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
             git push origin master
           else
             echo "No changes detected"
