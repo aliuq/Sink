@@ -1,7 +1,7 @@
 name: "Upstream Sync"
 on:
   schedule:
-    - cron: "0 7 * * 1,4"
+    - cron: "0 */4 * * *" # 每4小时运行一次
     # scheduled at 07:00 every Monday and Thursday
 
   workflow_dispatch: # click the button on Github repo!
@@ -20,12 +20,12 @@ jobs:
         with:
           ref: master
           persist-credentials: false
+
       - name: Sync upstream changes
         id: sync
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
           target_sync_branch: master
-          # REQUIRED 'target_repo_token' exactly like this!
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
           upstream_sync_branch: master
           upstream_sync_repo: ccbikai/Sink
@@ -33,7 +33,6 @@ jobs:
           # Set test_mode true during manual dispatch to run tests instead of the true action!!
           test_mode: ${{ inputs.sync_test_mode }}
 
-      # Step 3: Display a sample message based on the sync output var 'has_new_commits'
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
         run: echo "New commits were found to sync."
@@ -44,3 +43,8 @@ jobs:
 
       - name: Show value of 'has_new_commits'
         run: echo ${{ steps.sync.outputs.has_new_commits }}
+
+      - name: Send POST request
+        if: steps.sync.outputs.has_new_commits == 'true'
+        run: |
+          curl -X POST "${{ secrets.WEBHOOK_URL }}"
