@@ -1,23 +1,24 @@
-name: "Upstream Sync"
+name: Sync from upstream
+
 on:
   schedule:
-    - cron: "0 */4 * * *" # 每4小时运行一次
+    - cron: "0 */4 * * *" # 每 4 小时运行一次
 
   workflow_dispatch: # click the button on Github repo!
     inputs:
-      debug:
+      test_mode:
         description: "Fork Sync Test Mode"
         type: string
         default: "true"
 
 jobs:
   call-workflow-sync:
-    uses: aliuq/workflows/.github/workflows/sync.yml@master
+    uses: aliuq/workflows/.github/workflows/aliuq-sync.yml@master
     with:
-      ref: master
-      target_sync_branch: master
-      upstream_sync_branch: master
-      upstream_sync_repo: ccbikai/Sink
-      debug: ${{ inputs.debug }}
+      upstream_repo: ccbikai/Sink
+      test_mode: ${{ inputs.test_mode }}
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      CHAT_ID: ${{ secrets.CHAT_ID }}
+      REPLY_TO_MESSAGE_ID: ${{ secrets.REPLY_TO_MESSAGE_ID }}
