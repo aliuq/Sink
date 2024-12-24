@@ -2,7 +2,7 @@ name: Sync from upstream
 
 on:
   schedule:
-    - cron: "0 */4 * * *" # 每 4 小时运行一次
+    - cron: "0 */8 * * *" # 每 8 小时运行一次
 
   workflow_dispatch: # click the button on Github repo!
     inputs:
@@ -13,7 +13,7 @@ on:
 
 jobs:
   call-workflow-sync:
-    uses: aliuq/workflows/.github/workflows/aliuq-sync.yml@master
+    uses: aliuq/workflows/.github/workflows/sync-with-notify.yml@master
     with:
       upstream_repo: ccbikai/Sink
       test_mode: ${{ inputs.test_mode }}
