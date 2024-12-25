@@ -16,6 +16,8 @@ jobs:
     uses: aliuq/workflows/.github/workflows/sync-with-notify.yml@master
     with:
       upstream_repo: ccbikai/Sink
+      upstream_branch: master
+      target_branch: master
       test_mode: ${{ inputs.test_mode }}
     secrets:
       TOKEN: ${{ secrets.GITHUB_TOKEN }}
