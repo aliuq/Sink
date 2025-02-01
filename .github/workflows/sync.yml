@@ -1,0 +1,26 @@
+name: Sync from upstream
+
+on:
+  schedule:
+    - cron: "0 */8 * * *" # 每 8 小时运行一次
+
+  workflow_dispatch: # click the button on Github repo!
+    inputs:
+      test_mode:
+        description: "Fork Sync Test Mode"
+        type: string
+        default: "true"
+
+jobs:
+  call-workflow-sync:
+    uses: aliuq/workflows/.github/workflows/sync-with-notify.yml@master
+    with:
+      upstream_repo: ccbikai/Sink
+      upstream_branch: master
+      target_branch: master
+      test_mode: ${{ inputs.test_mode }}
+    secrets:
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      CHAT_ID: ${{ secrets.CHAT_ID }}
+      REPLY_TO_MESSAGE_ID: ${{ secrets.REPLY_TO_MESSAGE_ID }}
