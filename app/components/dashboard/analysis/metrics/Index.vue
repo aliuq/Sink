@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 const { t } = useI18n()
 
-const tabs = {
+const tabs: Record<string, string[]> = {
   location: ['country', 'region', 'city'],
   referer: ['referer', 'slug'],
   time: ['language', 'timezone'],
@@ -19,8 +19,18 @@ const translatedTabs = computed(() => ({
 </script>
 
 <template>
-  <main class="grid gap-8 lg:grid-cols-12">
-    <LazyDashboardAnalysisMetricsLocations class="col-span-1 lg:col-span-8" />
+  <main
+    class="
+      grid gap-8
+      lg:grid-cols-12
+    "
+  >
+    <LazyDashboardAnalysisMetricsLocations
+      class="
+        col-span-1
+        lg:col-span-8
+      "
+    />
     <DashboardAnalysisMetricsGroup
       class="lg:col-span-4"
       :tabs="translatedTabs.location"

@@ -1,14 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { ArrowUpDown } from 'lucide-vue-next'
 
-defineProps({
-  sortBy: {
-    type: String,
-    default: 'az',
-  },
-})
-
-const emit = defineEmits(['update:sortBy'])
+const linksStore = useDashboardLinksStore()
 </script>
 
 <template>
@@ -18,9 +11,19 @@ const emit = defineEmits(['update:sortBy'])
         <TooltipProvider>
           <Tooltip :delay-duration="100">
             <TooltipTrigger class="flex items-center">
-              <ArrowUpDown class="h-4 w-4 sm:mr-2" />
-              <span class="hidden sm:inline">
-                {{ $t(`links.sort.${sortBy}`) }}
+              <ArrowUpDown
+                class="
+                  h-4 w-4
+                  sm:mr-2
+                "
+              />
+              <span
+                class="
+                  hidden
+                  sm:inline
+                "
+              >
+                {{ $t(`links.sort.${linksStore.sortBy}`) }}
               </span>
             </TooltipTrigger>
             <TooltipContent>
@@ -31,16 +34,16 @@ const emit = defineEmits(['update:sortBy'])
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent>
-      <DropdownMenuItem @click="emit('update:sortBy', 'newest')">
+      <DropdownMenuItem @click="linksStore.sortBy = 'newest'">
         {{ $t('links.sort.newest') }}
       </DropdownMenuItem>
-      <DropdownMenuItem @click="emit('update:sortBy', 'oldest')">
+      <DropdownMenuItem @click="linksStore.sortBy = 'oldest'">
         {{ $t('links.sort.oldest') }}
       </DropdownMenuItem>
-      <DropdownMenuItem @click="emit('update:sortBy', 'az')">
+      <DropdownMenuItem @click="linksStore.sortBy = 'az'">
         {{ $t('links.sort.az') }}
       </DropdownMenuItem>
-      <DropdownMenuItem @click="emit('update:sortBy', 'za')">
+      <DropdownMenuItem @click="linksStore.sortBy = 'za'">
         {{ $t('links.sort.za') }}
       </DropdownMenuItem>
     </DropdownMenuContent>

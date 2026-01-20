@@ -1,22 +1,31 @@
-<script setup>
+<script setup lang="ts">
+import type { Link } from '@/types'
 import { createReusableTemplate, useMediaQuery, useUrlSearchParams, watchDebounced } from '@vueuse/core'
 import { safeDestr } from 'destr'
 import { Check, ChevronsUpDown } from 'lucide-vue-next'
 import { VList } from 'virtua/vue'
+import { cn } from '@/lib/utils'
 
-const emit = defineEmits(['change'])
+const emit = defineEmits<{
+  change: [key: string, value: string]
+}>()
 
 const [TriggerTemplate, TriggerComponent] = createReusableTemplate()
 const [FilterTemplate, FilterComponent] = createReusableTemplate()
 
 const isDesktop = useMediaQuery('(min-width: 640px)')
 
-const links = ref([])
+const links = ref<Link[]>([])
 const isOpen = ref(false)
-const selectedLinks = ref([])
+const selectedLinks = ref<string[]>([])
 
 async function getLinks() {
-  links.value = await useAPI('/api/link/search')
+  try {
+    links.value = await useAPI('/api/link/search')
+  }
+  catch (error) {
+    console.error(error)
+  }
 }
 
 onMounted(() => {
@@ -30,7 +39,7 @@ watchDebounced(selectedLinks, (value) => {
 function restoreFilters() {
   const searchParams = useUrlSearchParams('history')
   if (searchParams.filters) {
-    const filters = safeDestr(searchParams.filters)
+    const filters = safeDestr<{ slug?: string }>(searchParams.filters as string)
     if (filters.slug) {
       selectedLinks.value = filters.slug.split(',')
     }
@@ -48,12 +57,19 @@ onBeforeMount(() => {
       variant="outline"
       role="combobox"
       :aria-expanded="isOpen"
-      class="flex justify-between px-3 w-full sm:w-48"
+      class="
+        flex w-full justify-between px-3
+        sm:w-48
+      "
     >
-      <div class="flex-1 text-left truncate" :class="selectedLinks.length ? 'text-foreground' : 'text-muted-foreground'">
+      <div
+        class="flex-1 truncate text-left" :class="selectedLinks.length ? `
+          text-foreground
+        ` : `text-muted-foreground`"
+      >
         {{ selectedLinks.length ? selectedLinks.join(', ') : $t('dashboard.filter_placeholder') }}
       </div>
-      <ChevronsUpDown class="ml-2 w-4 h-4 opacity-50 shrink-0" />
+      <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
     </Button>
   </TriggerTemplate>
   <FilterTemplate>
@@ -69,11 +85,14 @@ onBeforeMount(() => {
           >
             <CommandItem
               :value="link.slug"
+              class="py-2"
             >
               <Check
                 :class="cn(
-                  'mr-2 h-4 w-4',
-                  selectedLinks.includes(link.slug) ? 'opacity-100' : 'opacity-0',
+                  'h-4 w-4',
+                  selectedLinks.includes(link.slug) ? 'opacity-100' : `
+                    opacity-0
+                  `,
                 )"
               />
               {{ link.slug }}
@@ -87,7 +106,12 @@ onBeforeMount(() => {
     <PopoverTrigger as-child>
       <TriggerComponent />
     </PopoverTrigger>
-    <PopoverContent class="p-0 w-full sm:w-48">
+    <PopoverContent
+      class="
+        w-full p-0
+        sm:w-48
+      "
+    >
       <FilterComponent />
     </PopoverContent>
   </Popover>
@@ -97,6 +121,9 @@ onBeforeMount(() => {
       <TriggerComponent />
     </DrawerTrigger>
     <DrawerContent class="h-[500px]">
+      <DrawerHeader class="sr-only">
+        <DrawerTitle>{{ $t('dashboard.filter_placeholder') }}</DrawerTitle>
+      </DrawerHeader>
       <FilterComponent />
     </DrawerContent>
   </Drawer>

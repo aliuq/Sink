@@ -1,19 +1,31 @@
 <template>
-  <div class="mt-16 md:mt-0 md:py-12 ">
-    <h2 class="font-bold text-center text-slate-600">
-      {{ $t('home.logos.title') }}
-    </h2>
-    <div class="flex flex-wrap items-center justify-center gap-8 mt-10 md:gap-20">
-      <img
-        class="w-64 aspect-[1256/632]"
-        alt="Cloudflare"
-        src="@/assets/images/cloudflare.png"
+  <section class="bg-background py-12">
+    <div class="mx-auto max-w-6xl px-6">
+      <div
+        class="
+          flex items-center justify-center gap-x-12 gap-y-6
+          md:gap-x-24
+        "
       >
-      <img
-        class="w-64 aspect-[1256/632]"
-        alt="Nuxt.js"
-        src="@/assets/images/nuxtjs.png"
-      >
+        <img
+          class="
+            h-20 w-auto
+            md:h-32
+            lg:h-44
+          "
+          alt="Cloudflare"
+          src="@/assets/images/cloudflare.png"
+        >
+        <img
+          class="
+            h-20 w-auto
+            md:h-32
+            lg:h-44
+          "
+          alt="Nuxt.js"
+          src="@/assets/images/nuxtjs.png"
+        >
+      </div>
     </div>
-  </div>
+  </section>
 </template>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Languages } from 'lucide-vue-next'
 
 const nuxtApp = useNuxtApp()
@@ -15,7 +15,7 @@ watch(currentLocale, (newLocale) => {
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="ghost">
-        <Languages class="w-5 h-5" />
+        <Languages class="h-5 w-5" />
         <span class="sr-only">{{ $t('theme.toggle') }}</span>
       </Button>
     </DropdownMenuTrigger>

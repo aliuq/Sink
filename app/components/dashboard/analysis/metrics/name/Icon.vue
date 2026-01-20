@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   Globe,
   Laptop,
@@ -8,7 +8,6 @@ import {
   Terminal,
 } from 'lucide-vue-next'
 
-// https://vue3-simple-icons.wyatt-herkamp.dev/
 import {
   AndroidIcon,
   AppleIcon,
@@ -20,10 +19,8 @@ import {
   GoogleIcon,
   HuaweiIcon,
   IOsIcon,
-  // InternetExplorerIcon,
   LinuxIcon,
   MacOsIcon,
-  // MicrosoftEdgeIcon,
   OperaIcon,
   SafariIcon,
   SamsungIcon,
@@ -32,23 +29,18 @@ import {
   WearOsIcon,
   WeChatIcon,
   XiaomiIcon,
-  // WindowsIcon,
   XIcon,
   YandexCloudIcon,
 } from 'vue3-simple-icons'
 
-defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    default: 'browser',
-  },
+withDefaults(defineProps<{
+  name: string
+  type?: string
+}>(), {
+  type: 'browser',
 })
 
-const iconMaps = {
+const iconMaps: Record<string, Component> = {
   'android': AndroidIcon,
   'android browser': AndroidIcon,
   'browser': Globe,
@@ -67,7 +59,6 @@ const iconMaps = {
   'gnu': GnuIcon,
   'harmonyos': HuaweiIcon,
   'huawei browser': HuaweiIcon,
-  // 'ie': InternetExplorerIcon,
   'ios': IOsIcon,
   'ipad': AppleIcon,
   'iphone': AppleIcon,
@@ -99,7 +90,7 @@ const iconMaps = {
   <div class="w-full truncate">
     <component
       :is="iconMaps[name.toLowerCase()] || iconMaps[type]"
-      class="w-5 h-5 py-0.5 float-left"
+      class="float-left h-5 w-5 py-0.5"
     />
     <span>{{ name }}</span>
   </div>

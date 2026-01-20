@@ -1,51 +1,48 @@
-<script setup>
+<script setup lang="ts">
+import type { MetricItem } from '@/types'
 import { Maximize } from 'lucide-vue-next'
 
-const props = defineProps({
-  type: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-})
+const props = defineProps<{
+  type: string
+  name: string
+}>()
 
-const id = inject('id')
-const time = inject('time')
-const filters = inject('filters')
+const id = inject(LINK_ID_KEY, computed(() => undefined))
+const analysisStore = useDashboardAnalysisStore()
 
 const total = ref(0)
-const metrics = ref([])
-const top6 = ref([])
+const metrics = ref<MetricItem[]>([])
+const top10 = ref<MetricItem[]>([])
+
+interface RawMetricData {
+  name: string
+  count: number
+}
 
 async function getLinkMetrics() {
   total.value = 0
   metrics.value = []
-  top6.value = []
-  const { data } = await useAPI('/api/stats/metrics', {
+  top10.value = []
+  const result = await useAPI<{ data: RawMetricData[] }>('/api/stats/metrics', {
     query: {
       type: props.type,
       id: id.value,
-      startAt: time.value.startAt,
-      endAt: time.value.endAt,
-      ...filters.value,
+      startAt: analysisStore.dateRange.startAt,
+      endAt: analysisStore.dateRange.endAt,
+      ...analysisStore.filters,
     },
   })
-  if (Array.isArray(data)) {
-    const colors = colorGradation(data.length)
-    total.value = data.reduce((acc, cur) => acc + Number(cur.count), 0)
-    metrics.value = data.map((item, i) => {
-      item.color = colors[i]
-      item.percent = Math.floor(item.count / total.value * 100) || (item.count ? 1 : 0)
-      return item
-    })
-    top6.value = metrics.value.slice(0, 6)
+  if (Array.isArray(result.data)) {
+    total.value = result.data.reduce((acc, cur) => acc + Number(cur.count), 0)
+    metrics.value = result.data.map(item => ({
+      ...item,
+      percent: Math.floor(item.count / total.value * 100) || (item.count ? 1 : 0),
+    }))
+    top10.value = metrics.value.slice(0, 10)
   }
 }
 
-watch([time, filters], getLinkMetrics, {
+watch([() => analysisStore.dateRange, () => analysisStore.filters], getLinkMetrics, {
   deep: true,
 })
 
@@ -55,13 +52,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <Card class="flex flex-col">
+  <Card class="flex flex-col gap-0 p-0">
     <template v-if="metrics.length">
-      <DashboardAnalysisMetricsList
-        class="flex-1"
-        :metrics="top6"
-        :type="type"
-      />
+      <CardContent class="p-0">
+        <DashboardAnalysisMetricsList
+          class="flex-1"
+          :metrics="top10"
+          :type="type"
+        />
+      </CardContent>
       <CardFooter class="py-2">
         <Dialog>
           <DialogTrigger
@@ -71,11 +70,16 @@ onMounted(() => {
             <Button
               variant="link"
             >
-              <Maximize class="w-4 h-4 mr-2" />
+              <Maximize class="mr-2 h-4 w-4" />
               {{ $t('dashboard.details') }}
             </Button>
           </DialogTrigger>
-          <DialogContent class="max-w-[95svw] max-h-[95svh] md:max-w-screen-md grid-rows-[auto_minmax(0,1fr)_auto]">
+          <DialogContent
+            class="
+              max-h-[95svh] max-w-[95svw] grid-rows-[auto_minmax(0,1fr)_auto]
+              md:max-w-(--breakpoint-md)
+            "
+          >
             <DialogHeader>
               <DialogTitle>{{ name }}</DialogTitle>
             </DialogHeader>
@@ -89,21 +93,21 @@ onMounted(() => {
       </CardFooter>
     </template>
     <template v-else>
-      <div class="flex justify-between items-center px-4 h-12">
+      <div class="flex h-12 items-center justify-between px-4">
         <Skeleton
-          class="w-32 h-4 rounded-full"
+          class="h-4 w-32 rounded-full"
         />
         <Skeleton
-          class="w-20 h-4 rounded-full"
+          class="h-4 w-20 rounded-full"
         />
       </div>
       <div
-        v-for="i in 3"
+        v-for="i in 5"
         :key="i"
         class="px-4 py-4"
       >
         <Skeleton
-          class="w-full h-4 rounded-full"
+          class="h-4 w-full rounded-full"
         />
       </div>
     </template>

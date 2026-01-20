@@ -102,15 +102,15 @@ export function useAccessLog(event: H3Event) {
 
   const userAgent = getHeader(event, 'user-agent') || ''
   const uaInfo = (new UAParser(userAgent, {
-    // eslint-disable-next-line ts/ban-ts-comment
+
     // @ts-expect-error
     browser: [Crawlers.browser || [], CLIs.browser || [], Emails.browser || [], Fetchers.browser || [], InApps.browser || [], MediaPlayers.browser || [], Vehicles.browser || []].flat(),
-    // eslint-disable-next-line ts/ban-ts-comment
+
     // @ts-expect-error
     device: [ExtraDevices.device || []].flat(),
   })).getResult()
 
-  const { request: { cf } } = event.context.cloudflare
+  const { request: { cf }, env } = event.context.cloudflare
   const link = event.context.link || {}
 
   const isBot = cf?.botManagement?.verifiedBot
@@ -149,7 +149,7 @@ export function useAccessLog(event: H3Event) {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    return hubAnalytics().put({
+    return env.ANALYTICS.writeDataPoint({
       indexes: [link.id], // only one index
       blobs: logs2blobs(accessLogs),
       doubles: logs2doubles(accessLogs),

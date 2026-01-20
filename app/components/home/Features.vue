@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { AreaChart, Hourglass, Link, Paintbrush, ServerOff, Sparkles } from 'lucide-vue-next'
 
 const { t } = useI18n()
@@ -37,37 +37,57 @@ const features = computed(() => [
 </script>
 
 <template>
-  <main class="pt-16 md:py-12">
-    <div class="md:pb-12">
-      <h2 class="text-4xl font-bold lg:text-5xl lg:tracking-tight">
-        {{ $t('home.features.title') }}
-      </h2>
-      <p class="my-8 text-lg md:mb-0 text-slate-600">
-        {{ $t('home.features.subtitle') }}
-      </p>
-    </div>
-
-    <div class="grid gap-8 md:gap-16 sm:grid-cols-2 md:grid-cols-3">
+  <section
+    class="
+      py-12
+      md:py-20
+    "
+  >
+    <div
+      class="
+        mx-auto max-w-6xl space-y-8 px-6
+        md:space-y-12
+      "
+    >
       <div
-        v-for="item in features"
-        :key="item.title"
-        class="flex items-start gap-4"
+        class="relative z-10 mx-auto max-w-xl space-y-4 text-center"
       >
-        <div class="w-8 h-8 p-2 mt-1 bg-black rounded-full shrink-0">
-          <component
-            :is="item.icon"
-            class="w-4 h-4 text-white"
-          />
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold">
-            {{ item.title }}
-          </h3>
-          <p class="mt-2 leading-relaxed text-slate-500">
+        <h2
+          class="text-3xl font-semibold text-balance"
+        >
+          {{ $t('home.features.title') }}
+        </h2>
+        <p class="text-muted-foreground">
+          {{ $t('home.features.subtitle') }}
+        </p>
+      </div>
+
+      <div
+        class="
+          relative mx-auto grid gap-3
+          sm:grid-cols-2
+          lg:grid-cols-3
+        "
+      >
+        <div
+          v-for="item in features"
+          :key="item.title"
+          class="space-y-3 rounded-xl border p-6"
+        >
+          <div class="flex items-center gap-2">
+            <component
+              :is="item.icon"
+              class="size-4"
+            />
+            <h3 class="text-sm font-medium">
+              {{ item.title }}
+            </h3>
+          </div>
+          <p class="text-sm text-muted-foreground">
             {{ item.description }}
           </p>
         </div>
       </div>
     </div>
-  </main>
+  </section>
 </template>
