@@ -55,10 +55,10 @@ export type LogsMap = {
   [key in DoublesMap[DoublesKey]]?: number | undefined
 }
 
-export const logsMap = {
-  ...Object.entries(blobsMap).reduce((acc, [k, v]) => ({ ...acc, [v]: k }), {}),
-  ...Object.entries(doublesMap).reduce((acc, [k, v]) => ({ ...acc, [v]: k }), {}),
-} as LogsMap
+export const logsMap = Object.fromEntries([
+  ...Object.entries(blobsMap).map(([k, v]) => [v, k]),
+  ...Object.entries(doublesMap).map(([k, v]) => [v, k]),
+]) as LogsMap
 
 export function logs2blobs(logs: LogsMap) {
   return (Object.keys(blobsMap) as BlobsKey[])
@@ -110,7 +110,8 @@ export function useAccessLog(event: H3Event) {
     device: [ExtraDevices.device || []].flat(),
   })).getResult()
 
-  const { request: { cf }, env } = event.context.cloudflare
+  const { cloudflare } = event.context
+  const { request: { cf }, env } = cloudflare
   const link = event.context.link || {}
 
   const isBot = cf?.botManagement?.verifiedBot
@@ -155,8 +156,7 @@ export function useAccessLog(event: H3Event) {
       doubles: logs2doubles(accessLogs),
     })
   }
-  else {
-    console.log('access logs:', accessLogs, logs2blobs(accessLogs), logs2doubles(accessLogs), { ...blobs2logs(logs2blobs(accessLogs)), ...doubles2logs(logs2doubles(accessLogs)) })
-    return Promise.resolve()
-  }
+
+  console.log('access logs:', accessLogs, logs2blobs(accessLogs), logs2doubles(accessLogs), { ...blobs2logs(logs2blobs(accessLogs)), ...doubles2logs(logs2doubles(accessLogs)) })
+  return Promise.resolve()
 }

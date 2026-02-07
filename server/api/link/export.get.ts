@@ -1,13 +1,20 @@
-import type { Link } from '@@/app/types'
+import type { ExportData, Link } from '#shared/schemas/link'
 
-interface ExportData {
-  version: string
-  exportedAt: string
-  count: number
-  links: Link[]
-  cursor?: string
-  list_complete: boolean
-}
+defineRouteMeta({
+  openAPI: {
+    description: 'Export all links with pagination',
+    security: [{ bearerAuth: [] }],
+    parameters: [
+      {
+        name: 'cursor',
+        in: 'query',
+        required: false,
+        schema: { type: 'string' },
+        description: 'Pagination cursor from previous response',
+      },
+    ],
+  },
+})
 
 export default eventHandler(async (event) => {
   const query = getQuery(event)

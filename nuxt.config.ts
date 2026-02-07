@@ -4,6 +4,7 @@ import { currentLocales } from './i18n/i18n'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  extends: ['./layers/dashboard'],
   modules: [
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
@@ -42,19 +43,19 @@ export default defineNuxtConfig({
     '/': {
       prerender: true,
     },
-    '/dashboard/**': {
-      prerender: true,
-      ssr: false,
-    },
-    '/dashboard': {
-      redirect: '/dashboard/links',
-    },
     '/api/**': {
       cors: process.env.NUXT_API_CORS === 'true',
     },
   },
   experimental: {
     enforceModuleCompatibility: true,
+  },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        types: ['vite/client'],
+      },
+    },
   },
   compatibilityDate: 'latest',
   nitro: {
@@ -84,34 +85,8 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            // Three.js core as separate chunk
-            if (id.includes('node_modules/three/')) {
-              return 'three'
-            }
-            // Globe related libraries as separate chunk
-            if (id.includes('node_modules/globe.gl') || id.includes('node_modules/three-globe')) {
-              return 'globe'
-            }
-            // D3 scale related libraries as separate chunk
-            if (id.includes('node_modules/d3-scale') || id.includes('node_modules/d3-interpolate') || id.includes('node_modules/d3-color')) {
-              return 'd3'
-            }
-          },
-        },
-      },
-    },
-  },
-  typescript: {
-    strict: false,
-    tsConfig: {
-      include: ['../schemas/**/*'],
-      vueCompilerOptions: {
-        skipTemplateCodegen: true,
-      },
+    worker: {
+      format: 'es',
     },
   },
   eslint: {
