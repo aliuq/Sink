@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CounterData } from '@/types'
 import NumberFlow from '@number-flow/vue'
+import { watchThrottled } from '@vueuse/core'
 import { Flame, MousePointerClick, Users } from 'lucide-vue-next'
 
 const defaultData: CounterData = Object.freeze({
@@ -27,8 +28,11 @@ async function getLinkCounters() {
   counters.value = result.data?.[0] ?? defaultData
 }
 
-watch([() => analysisStore.dateRange, () => analysisStore.filters], getLinkCounters, {
+watchThrottled([() => analysisStore.dateRange, () => analysisStore.filters], getLinkCounters, {
   deep: true,
+  throttle: 500,
+  leading: true,
+  trailing: true,
 })
 
 onMounted(async () => {

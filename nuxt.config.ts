@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     listQueryLimit: 500,
     disableBotAccessLog: false,
     disableAutoBackup: false,
+    notFoundRedirect: '',
     public: {
       previewMode: '',
       slugDefaultLength: '6',
@@ -45,6 +46,15 @@ export default defineNuxtConfig({
     },
     '/api/**': {
       cors: process.env.NUXT_API_CORS === 'true',
+    },
+    '/sphere.bin': {
+      headers: { 'Cache-Control': 'public, max-age=2592000, immutable' },
+    },
+    '/*.json': {
+      headers: { 'Cache-Control': 'public, max-age=2592000, immutable' },
+    },
+    '/*.geojson': {
+      headers: { 'Cache-Control': 'public, max-age=2592000, immutable' },
     },
   },
   experimental: {

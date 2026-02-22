@@ -1,8 +1,14 @@
 import type { LinkSchema } from '#shared/schemas/link'
 import type { H3Event } from 'h3'
 import type { z } from 'zod'
+import { parseURL, stringifyParsedURL } from 'ufo'
 
 type Link = z.infer<typeof LinkSchema>
+
+export function withoutQuery(url: string): string {
+  const parsed = parseURL(url)
+  return stringifyParsedURL({ ...parsed, search: '' })
+}
 
 export function normalizeSlug(event: H3Event, slug: string): string {
   const { caseSensitive } = useRuntimeConfig(event)
@@ -22,7 +28,7 @@ export async function putLink(event: H3Event, link: Link): Promise<void> {
     expiration,
     metadata: {
       expiration,
-      url: link.url,
+      url: withoutQuery(link.url),
       comment: link.comment,
     },
   })

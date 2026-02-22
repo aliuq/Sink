@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HeatmapDataPoint } from '@/types'
-import { watchDeep } from '@vueuse/core'
+import { watchThrottled } from '@vueuse/core'
 
 const props = withDefaults(defineProps<{
   metric?: 'visits' | 'visitors'
@@ -64,7 +64,7 @@ function getCellColor(weekday: number, hour: number): string {
   return `color-mix(in srgb, ${color} ${Math.round(alpha * 100)}%, transparent)`
 }
 
-async function getHeatmapData(signal?: AbortSignal) {
+async function getHeatmapData() {
   isLoaded.value = false
   const { startAt, endAt } = effectiveTimeRange.value
   const result = await useAPI<{ data: HeatmapDataPoint[] }>('/api/stats/heatmap', {
@@ -75,7 +75,6 @@ async function getHeatmapData(signal?: AbortSignal) {
       endAt,
       ...effectiveFilters.value,
     },
-    signal,
   })
   heatmapData.value = (result.data || []).map(item => ({
     ...item,
@@ -88,20 +87,14 @@ async function getHeatmapData(signal?: AbortSignal) {
   isLoaded.value = true
 }
 
-watchDeep(
+watchThrottled(
   [effectiveTimeRange, effectiveFilters],
-  async () => {
-    const controller = new AbortController()
-    onWatcherCleanup(() => controller.abort())
-
-    try {
-      await getHeatmapData(controller.signal)
-    }
-    catch (e) {
-      if (e instanceof Error && e.name === 'AbortError')
-        return
-      throw e
-    }
+  getHeatmapData,
+  {
+    deep: true,
+    throttle: 500,
+    leading: true,
+    trailing: true,
   },
 )
 

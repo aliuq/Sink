@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core'
 
-const { currentPage, pageTitle } = useDashboardRoute()
+const { pageTitle } = useDashboardRoute()
 const route = useRoute()
 
 const scrollContainer = ref<HTMLElement | null>(null)
@@ -44,34 +44,10 @@ useSeoMeta({
             <DashboardPageBreadcrumb :title="$t(pageTitle ?? 'dashboard.title')" />
           </div>
 
-          <div class="flex flex-1 items-center justify-end gap-2">
-            <div
-              class="
-                hidden items-center gap-2
-                sm:flex
-              "
-            >
-              <DashboardHeaderActions :page="currentPage" />
-            </div>
-          </div>
-
           <div
-            class="
-              flex flex-wrap items-center gap-2
-              sm:hidden
-            "
-          >
-            <DashboardHeaderActions :page="currentPage" :mobile-buttons="true" />
-          </div>
-
-          <div
-            class="
-              w-full
-              sm:hidden
-            "
-          >
-            <DashboardHeaderActions :page="currentPage" :mobile-search="true" />
-          </div>
+            id="dashboard-header-actions"
+            class="flex flex-1 flex-wrap items-center justify-end gap-2"
+          />
         </header>
 
         <div ref="scrollContainer" class="flex-1 overflow-y-auto p-4">

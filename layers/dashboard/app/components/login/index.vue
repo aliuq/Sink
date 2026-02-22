@@ -50,6 +50,17 @@ async function handleSubmit() {
     </CardHeader>
     <CardContent class="grid gap-4">
       <form class="space-y-6" @submit.prevent="handleSubmit">
+        <!-- Hidden username field for password managers -->
+        <Input
+          type="text"
+          name="username"
+          autocomplete="username"
+          value="root"
+          readonly
+          class="sr-only"
+          tabindex="-1"
+          aria-hidden="true"
+        />
         <FieldGroup>
           <Field :data-invalid="!!error">
             <FieldLabel for="token">
@@ -59,6 +70,8 @@ async function handleSubmit() {
               id="token"
               v-model="token"
               type="password"
+              name="password"
+              autocomplete="current-password"
               placeholder="********"
               :aria-invalid="!!error"
             />

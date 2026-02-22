@@ -39,6 +39,16 @@ linksStore.onLinkUpdate(({ link: updatedLink, type }) => {
 
 <template>
   <main class="space-y-6">
+    <Teleport to="#dashboard-header-actions" defer>
+      <div
+        class="
+          flex-1
+          sm:hidden
+        "
+      />
+      <DashboardDatePicker />
+    </Teleport>
+
     <DashboardLinksLink
       v-if="link?.id"
       :link="link"

@@ -2,6 +2,12 @@
 definePageMeta({
   layout: 'dashboard',
 })
+
+const realtimeStore = useDashboardRealtimeStore()
+
+function handleFilterChange(type: string, value: string) {
+  realtimeStore.updateFilter(type, value)
+}
 </script>
 
 <template>
@@ -11,6 +17,17 @@ definePageMeta({
       md:h-full md:overflow-hidden
     "
   >
-    <LazyDashboardRealtime />
+    <Teleport to="#dashboard-header-actions" defer>
+      <div
+        class="
+          flex-1
+          sm:hidden
+        "
+      />
+      <DashboardTimePicker />
+      <DashboardFilters :filters="realtimeStore.filters" @change="handleFilterChange" />
+    </Teleport>
+
+    <DashboardRealtime />
   </main>
 </template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MetricItem } from '@/types'
+import { watchThrottled } from '@vueuse/core'
 import { Maximize } from 'lucide-vue-next'
 
 const props = defineProps<{
@@ -42,8 +43,11 @@ async function getLinkMetrics() {
   }
 }
 
-watch([() => analysisStore.dateRange, () => analysisStore.filters], getLinkMetrics, {
+watchThrottled([() => analysisStore.dateRange, () => analysisStore.filters], getLinkMetrics, {
   deep: true,
+  throttle: 500,
+  leading: true,
+  trailing: true,
 })
 
 onMounted(() => {

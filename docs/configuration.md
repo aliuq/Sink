@@ -32,9 +32,11 @@ Cache links can speed up access, but setting them too long may result in slow ch
 
 ## `NUXT_REDIRECT_WITH_QUERY`
 
-URL parameters are not carried during link redirection by default and it is not recommended to enable this feature.
+URL parameters are not carried during link redirection by default and it is not recommended to enable this feature. This is the global default; individual links can override this via the **Redirect with Query Parameters** toggle in **Link Settings**.
 
 ## `NUXT_HOME_URL`
+
+> If you are using Worker deployment, this variable needs to be configured in **Settings** -> **Build** -> **Variables and Secrets** and **Settings** -> **Variables and Secrets**.
 
 The default Sink homepage is the introduction page, you can replace it with your own website.
 
@@ -82,3 +84,8 @@ This feature requires:
 2. Create R2 bucket: `wrangler r2 bucket create sink`
 
 Backups are stored in R2 with the path `backups/links-{timestamp}.json` and run daily at 00:00 UTC.
+
+## `NUXT_NOT_FOUND_REDIRECT`
+
+Optional custom redirect target when a slug is not found.
+If this is not set, Sink will fall back to its default 404 page.

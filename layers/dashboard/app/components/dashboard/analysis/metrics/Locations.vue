@@ -2,7 +2,7 @@
 import type { ChartConfig } from '@/components/ui/chart'
 import type { AreaData } from '@/types'
 import { VisSingleContainer, VisTooltip, VisTopoJSONMap, VisTopoJSONMapSelectors } from '@unovis/vue'
-import { useMounted } from '@vueuse/core'
+import { useMounted, watchThrottled } from '@vueuse/core'
 import { render } from 'vue'
 import { ChartTooltipContent } from '@/components/ui/chart'
 
@@ -45,8 +45,11 @@ async function getMapData() {
   }
 }
 
-watch([() => analysisStore.dateRange, () => analysisStore.filters], getMapData, {
+watchThrottled([() => analysisStore.dateRange, () => analysisStore.filters], getMapData, {
   deep: true,
+  throttle: 500,
+  leading: true,
+  trailing: true,
 })
 
 onMounted(() => {

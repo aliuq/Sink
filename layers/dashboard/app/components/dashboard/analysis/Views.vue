@@ -2,7 +2,7 @@
 import type { ChartConfig } from '@/components/ui/chart'
 import type { ViewDataPoint } from '@/types'
 import { VisArea, VisAxis, VisGroupedBar, VisLine, VisXYContainer } from '@unovis/vue'
-import { watchDeep } from '@vueuse/core'
+import { watchThrottled } from '@vueuse/core'
 import {
   ChartTooltipContent,
   componentToString,
@@ -81,7 +81,7 @@ function parseTimeString(time: string): number {
   return new Date(time).getTime()
 }
 
-async function getLinkViews(signal?: AbortSignal) {
+async function getLinkViews() {
   views.value = []
   const { startAt, endAt } = effectiveTimeRange.value
   const result = await useAPI<{ data: ViewDataPoint[] }>('/api/stats/views', {
@@ -93,7 +93,6 @@ async function getLinkViews(signal?: AbortSignal) {
       endAt,
       ...effectiveFilters.value,
     },
-    signal,
   })
   views.value = (result.data || []).map(item => ({
     ...item,
@@ -102,20 +101,14 @@ async function getLinkViews(signal?: AbortSignal) {
   }))
 }
 
-watchDeep(
+watchThrottled(
   [effectiveTimeRange, effectiveFilters],
-  async () => {
-    const controller = new AbortController()
-    onWatcherCleanup(() => controller.abort())
-
-    try {
-      await getLinkViews(controller.signal)
-    }
-    catch (e) {
-      if (e instanceof Error && e.name === 'AbortError')
-        return
-      throw e
-    }
+  getLinkViews,
+  {
+    deep: true,
+    throttle: 500,
+    leading: true,
+    trailing: true,
   },
 )
 

@@ -64,7 +64,8 @@
     "export": "Xuất",
     "coffee": "Mua cho tôi một ly cà phê",
     "github": "GitHub",
-    "stars": "Stars"
+    "stars": "Stars",
+    "update": "Phiên bản mới {version} có sẵn (hiện tại: {current})"
   },
   "home": {
     "hero": {
@@ -232,6 +233,14 @@
       "device_redirect": "Chuyển hướng theo thiết bị",
       "google_play": "URL Google Play",
       "app_store": "URL App Store",
+      "link_settings": "Cài đặt liên kết",
+      "redirect_with_query_label": "Chuyển hướng kèm tham số truy vấn",
+      "redirect_with_query_description": "Thêm tham số truy vấn từ liên kết rút gọn vào URL đích. Ghi đè cài đặt toàn cục.",
+      "cloaking_label": "Bật che giấu liên kết",
+      "cloaking_description": "Hiển thị liên kết rút gọn trên thanh địa chỉ trình duyệt thay vì URL đích. Có thể không hoạt động với các trang web chặn nhúng iframe.",
+      "password_label": "Bảo vệ bằng mật khẩu",
+      "password_description": "Yêu cầu mật khẩu để truy cập liên kết rút gọn này.",
+      "password_placeholder": "Để trống để tắt",
       "og_settings": "Cài đặt OpenGraph",
       "og_title": "Tiêu đề",
       "og_title_placeholder": "Để trống sẽ sử dụng tên miền URL",
