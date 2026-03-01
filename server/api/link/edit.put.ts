@@ -58,6 +58,9 @@ export default eventHandler(async (event) => {
     createdAt: existingLink.createdAt,
     updatedAt: Math.floor(Date.now() / 1000),
   }
+  if (link.password === undefined) {
+    delete newLink.password
+  }
   await putLink(event, newLink)
   setResponseStatus(event, 201)
   const shortLink = buildShortLink(event, newLink.slug)

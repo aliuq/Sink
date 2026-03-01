@@ -175,6 +175,22 @@ describe.sequential('/api/link/edit', () => {
     expect(data).toHaveProperty('shortLink')
   })
 
+  it('removes password when not provided in edit', async () => {
+    const slug = testLinkPayload.slug
+
+    // Set a password on the link
+    const setPasswordResponse = await putJson('/api/link/edit', { ...testLinkPayload, password: 'secret123' })
+    expect(setPasswordResponse.status).toBe(201)
+    const setData = await setPasswordResponse.json() as { link: { password?: string } }
+    expect(setData.link.password).toBe('secret123')
+
+    // Edit the link without providing a password (user cleared the field)
+    const removePasswordResponse = await putJson('/api/link/edit', { url: testLinkPayload.url, slug })
+    expect(removePasswordResponse.status).toBe(201)
+    const removeData = await removePasswordResponse.json() as { link: { password?: string } }
+    expect(removeData.link.password).toBeUndefined()
+  })
+
   it('returns 404 when editing non-existent link', async () => {
     const payload = { url: 'https://example.com', slug: 'non-existent-slug-for-edit-12345' }
     const response = await putJson('/api/link/edit', payload)
