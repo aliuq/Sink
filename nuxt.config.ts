@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     disableBotAccessLog: false,
     disableAutoBackup: false,
     notFoundRedirect: '',
+    safeBrowsingDoh: '', // Set to DoH URL to enable auto-detection, e.g. https://family.cloudflare-dns.com/dns-query
     public: {
       previewMode: '',
       slugDefaultLength: '6',

@@ -238,6 +238,8 @@
       "redirect_with_query_description": "Aggiungi i parametri query dal link breve all'URL di destinazione. Sovrascrive l'impostazione globale.",
       "cloaking_label": "Abilita Mascheramento Link",
       "cloaking_description": "Mostra il tuo link breve nella barra degli indirizzi del browser invece dell'URL di destinazione. Potrebbe non funzionare per siti che bloccano l'incorporamento iframe.",
+      "unsafe_label": "Segna come non sicuro",
+      "unsafe_description": "Mostra una pagina di avviso prima del reindirizzamento. I visitatori devono confermare per continuare.",
       "password_label": "Protezione con Password",
       "password_description": "Richiedi una password per accedere a questo link breve.",
       "password_placeholder": "Lascia vuoto per disabilitare",
@@ -269,6 +271,14 @@
     "ai_slug_failed": "Generazione slug IA fallita"
   },
   "migrate": {
+    "backup": {
+      "title": "Backup manuale",
+      "description": "Avvia un backup manuale di tutti i link nel bucket R2 configurato",
+      "button": "Avvia backup",
+      "backing_up": "Backup in corso...",
+      "success": "Backup riuscito",
+      "failed": "Backup fallito"
+    },
     "export": {
       "title": "Esporta Link",
       "description": "Scarica tutti i tuoi link come file JSON",
