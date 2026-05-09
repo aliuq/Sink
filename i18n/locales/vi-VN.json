@@ -249,6 +249,13 @@
       "og_description": "Mô tả",
       "og_description_placeholder": "Mô tả liên kết",
       "og_image": "Hình ảnh",
+      "geo_routing": "Định tuyến theo địa lý",
+      "add_geo_route": "Thêm tuyến đường địa lý",
+      "country_code": "Mã quốc gia (ví dụ: VN)",
+      "select_country": "Chọn quốc gia",
+      "search_country": "Tìm quốc gia...",
+      "no_country_found": "Không tìm thấy quốc gia.",
+      "find_country_code": "Tìm mã quốc gia của bạn",
       "advanced": "Nâng cao",
       "more_options": "Thêm tùy chọn",
       "image_invalid_type": "Vui lòng tải lên tệp hình ảnh",
@@ -269,7 +276,8 @@
       "utm_content": "Nội dung UTM",
       "utm_apply": "Áp dụng",
       "utm_clear": "Xóa",
-      "utm_invalid_url": "Nhập URL hợp lệ để xem trước và áp dụng tham số UTM."
+      "utm_invalid_url": "Nhập URL hợp lệ để xem trước và áp dụng tham số UTM.",
+      "ai_og_generate": "Tạo AI OpenGraph"
     },
     "sort": {
       "newest": "Mới nhất trước",
@@ -280,9 +288,22 @@
     },
     "update_failed": "Cập nhật liên kết thất bại",
     "create_failed": "Tạo liên kết thất bại",
-    "ai_slug_failed": "Tạo slug AI thất bại"
+    "ai_slug_failed": "Tạo slug AI thất bại",
+    "ai_og_failed": "Không thể tạo AI OpenGraph",
+    "ai_og_success": "Tạo AI OpenGraph thành công"
   },
   "migrate": {
+    "access_export": {
+      "title": "Export Access Data",
+      "description": "Download access statistics as a CSV file",
+      "date_range": "Date Range",
+      "slug_label": "Slug Filter",
+      "slug_description": "Leave empty to export all slugs.",
+      "button": "Export CSV",
+      "exporting": "Exporting...",
+      "success": "Export successful",
+      "failed": "Export failed"
+    },
     "backup": {
       "title": "Sao lưu thủ công",
       "description": "Kích hoạt sao lưu thủ công tất cả liên kết sang bộ chứa R2 đã được cấu hình",

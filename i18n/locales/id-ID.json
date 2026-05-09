@@ -249,6 +249,13 @@
       "og_description": "Deskripsi",
       "og_description_placeholder": "Deskripsi tautan",
       "og_image": "Gambar",
+      "geo_routing": "Perutean Geo",
+      "add_geo_route": "Tambah Rute Geo",
+      "country_code": "Kode Negara (mis. ID)",
+      "select_country": "Pilih negara",
+      "search_country": "Cari negara...",
+      "no_country_found": "Negara tidak ditemukan.",
+      "find_country_code": "Cari kode negara Anda",
       "advanced": "Lanjutan",
       "more_options": "Opsi Tambahan",
       "image_invalid_type": "Harap unggah file gambar",
@@ -269,7 +276,8 @@
       "utm_content": "Konten UTM",
       "utm_apply": "Terapkan",
       "utm_clear": "Bersihkan",
-      "utm_invalid_url": "Masukkan URL valid untuk melihat pratinjau dan menerapkan parameter UTM."
+      "utm_invalid_url": "Masukkan URL valid untuk melihat pratinjau dan menerapkan parameter UTM.",
+      "ai_og_generate": "Buat OpenGraph AI"
     },
     "sort": {
       "newest": "Terbaru",
@@ -280,9 +288,22 @@
     },
     "update_failed": "Gagal memperbarui tautan",
     "create_failed": "Gagal membuat tautan",
-    "ai_slug_failed": "Gagal membuat slug AI"
+    "ai_slug_failed": "Gagal membuat slug AI",
+    "ai_og_failed": "Gagal membuat OpenGraph AI",
+    "ai_og_success": "OpenGraph AI berhasil dibuat"
   },
   "migrate": {
+    "access_export": {
+      "title": "Export Access Data",
+      "description": "Download access statistics as a CSV file",
+      "date_range": "Date Range",
+      "slug_label": "Slug Filter",
+      "slug_description": "Leave empty to export all slugs.",
+      "button": "Export CSV",
+      "exporting": "Exporting...",
+      "success": "Export successful",
+      "failed": "Export failed"
+    },
     "backup": {
       "title": "Cadangan Manual",
       "description": "Picu pencadangan manual semua tautan ke bucket R2 yang dikonfigurasi",

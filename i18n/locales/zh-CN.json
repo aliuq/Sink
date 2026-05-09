@@ -249,7 +249,14 @@
       "og_description": "描述",
       "og_description_placeholder": "链接描述",
       "og_image": "图片",
-      "advanced": "高级设置",
+      "geo_routing": "地理路由",
+      "add_geo_route": "添加地理路由",
+      "country_code": "国家/地区代码 (例如 CN)",
+      "select_country": "选择国家/地区",
+      "search_country": "搜索国家/地区...",
+      "no_country_found": "未找到国家/地区。",
+      "find_country_code": "查找您的国家/地区代码",
+      "advanced": "高级选项",
       "more_options": "更多选项",
       "image_invalid_type": "请上传图片文件",
       "image_size_limit": "图片大小不能超过 5MB",
@@ -269,7 +276,8 @@
       "utm_content": "UTM 内容",
       "utm_apply": "应用",
       "utm_clear": "清空",
-      "utm_invalid_url": "请输入有效 URL 以预览并应用 UTM 参数。"
+      "utm_invalid_url": "请输入有效 URL 以预览并应用 UTM 参数。",
+      "ai_og_generate": "生成 AI OpenGraph"
     },
     "sort": {
       "newest": "最新",
@@ -280,9 +288,22 @@
     },
     "update_failed": "更新链接失败",
     "create_failed": "创建链接失败",
-    "ai_slug_failed": "AI 生成短链失败"
+    "ai_slug_failed": "AI 生成短链失败",
+    "ai_og_failed": "生成 AI OpenGraph 失败",
+    "ai_og_success": "成功生成 AI OpenGraph"
   },
   "migrate": {
+    "access_export": {
+      "title": "导出访问数据",
+      "description": "将访问统计数据下载为 CSV 文件",
+      "date_range": "日期范围",
+      "slug_label": "Slug 筛选",
+      "slug_description": "留空将导出全部 Slug。",
+      "button": "导出 CSV",
+      "exporting": "正在导出...",
+      "success": "导出成功",
+      "failed": "导出失败"
+    },
     "backup": {
       "title": "手动备份",
       "description": "手动触发所有链接到已配置 R2 存储桶的备份",

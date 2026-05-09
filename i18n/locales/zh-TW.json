@@ -249,6 +249,13 @@
       "og_description": "描述",
       "og_description_placeholder": "連結描述",
       "og_image": "圖片",
+      "geo_routing": "地理路由",
+      "add_geo_route": "新增地理路由",
+      "country_code": "國家/地區代碼 (例如 TW)",
+      "select_country": "選擇國家/地區",
+      "search_country": "搜尋國家/地區...",
+      "no_country_found": "找不到國家/地區。",
+      "find_country_code": "尋找您的國家/地區代碼",
       "advanced": "進階設置",
       "more_options": "更多選項",
       "image_invalid_type": "請上傳圖片檔案",
@@ -269,7 +276,8 @@
       "utm_content": "UTM 內容",
       "utm_apply": "套用",
       "utm_clear": "清除",
-      "utm_invalid_url": "請輸入有效的 URL 以預覽並套用 UTM 參數。"
+      "utm_invalid_url": "請輸入有效的 URL 以預覽並套用 UTM 參數。",
+      "ai_og_generate": "生成 AI OpenGraph"
     },
     "sort": {
       "newest": "最新",
@@ -280,9 +288,22 @@
     },
     "update_failed": "更新連結失敗",
     "create_failed": "創建連結失敗",
-    "ai_slug_failed": "AI 生成短連結失敗"
+    "ai_slug_failed": "AI 生成短連結失敗",
+    "ai_og_failed": "生成 AI OpenGraph 失敗",
+    "ai_og_success": "成功生成 AI OpenGraph"
   },
   "migrate": {
+    "access_export": {
+      "title": "匯出存取資料",
+      "description": "將存取統計資料下載為 CSV 檔案",
+      "date_range": "日期範圍",
+      "slug_label": "Slug 篩選",
+      "slug_description": "留空將匯出全部 Slug。",
+      "button": "匯出 CSV",
+      "exporting": "正在匯出...",
+      "success": "匯出成功",
+      "failed": "匯出失敗"
+    },
     "backup": {
       "title": "手動備份",
       "description": "手動觸發所有連結到已配置 R2 儲存桶的備份",

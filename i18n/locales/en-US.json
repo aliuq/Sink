@@ -249,6 +249,13 @@
       "og_description": "Description",
       "og_description_placeholder": "Link description",
       "og_image": "Image",
+      "geo_routing": "Geo Routing",
+      "add_geo_route": "Add Geo Route",
+      "country_code": "Country Code (e.g. US)",
+      "select_country": "Select country",
+      "search_country": "Search country...",
+      "no_country_found": "No country found.",
+      "find_country_code": "Find your country code",
       "advanced": "Advanced",
       "more_options": "More Options",
       "image_invalid_type": "Please upload an image file",
@@ -269,7 +276,8 @@
       "utm_content": "UTM Content",
       "utm_apply": "Apply",
       "utm_clear": "Clear",
-      "utm_invalid_url": "Enter a valid URL to preview and apply UTM parameters."
+      "utm_invalid_url": "Enter a valid URL to preview and apply UTM parameters.",
+      "ai_og_generate": "Generate AI OpenGraph"
     },
     "sort": {
       "newest": "Newest First",
@@ -280,9 +288,22 @@
     },
     "update_failed": "Failed to update link",
     "create_failed": "Failed to create link",
-    "ai_slug_failed": "Failed to generate AI slug"
+    "ai_slug_failed": "Failed to generate AI slug",
+    "ai_og_failed": "Failed to generate AI OpenGraph",
+    "ai_og_success": "AI OpenGraph generated successfully"
   },
   "migrate": {
+    "access_export": {
+      "title": "Export Access Data",
+      "description": "Download access statistics as a CSV file",
+      "date_range": "Date Range",
+      "slug_label": "Slug Filter",
+      "slug_description": "Leave empty to export all slugs.",
+      "button": "Export CSV",
+      "exporting": "Exporting...",
+      "success": "Export successful",
+      "failed": "Export failed"
+    },
     "backup": {
       "title": "Manual Backup",
       "description": "Trigger a manual backup of all links to the configured R2 bucket",

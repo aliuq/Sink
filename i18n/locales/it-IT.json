@@ -249,6 +249,13 @@
       "og_description": "Descrizione",
       "og_description_placeholder": "Descrizione del link",
       "og_image": "Immagine",
+      "geo_routing": "Routing Geografico",
+      "add_geo_route": "Aggiungi Rotta Geografica",
+      "country_code": "Codice Paese (es. IT)",
+      "select_country": "Seleziona paese",
+      "search_country": "Cerca paese...",
+      "no_country_found": "Nessun paese trovato.",
+      "find_country_code": "Trova il codice del tuo paese",
       "advanced": "Avanzate",
       "more_options": "Altre Opzioni",
       "image_invalid_type": "Carica un file immagine valido",
@@ -269,7 +276,8 @@
       "utm_content": "Contenuto UTM",
       "utm_apply": "Applica",
       "utm_clear": "Cancella",
-      "utm_invalid_url": "Inserisci un URL valido per visualizzare l'anteprima e applicare i parametri UTM."
+      "utm_invalid_url": "Inserisci un URL valido per visualizzare l'anteprima e applicare i parametri UTM.",
+      "ai_og_generate": "Genera OpenGraph AI"
     },
     "sort": {
       "newest": "Più Recenti",
@@ -280,9 +288,22 @@
     },
     "update_failed": "Aggiornamento link fallito",
     "create_failed": "Creazione link fallita",
-    "ai_slug_failed": "Generazione slug IA fallita"
+    "ai_slug_failed": "Generazione slug IA fallita",
+    "ai_og_failed": "Impossibile generare l'OpenGraph AI",
+    "ai_og_success": "OpenGraph AI generato con successo"
   },
   "migrate": {
+    "access_export": {
+      "title": "Export Access Data",
+      "description": "Download access statistics as a CSV file",
+      "date_range": "Date Range",
+      "slug_label": "Slug Filter",
+      "slug_description": "Leave empty to export all slugs.",
+      "button": "Export CSV",
+      "exporting": "Exporting...",
+      "success": "Export successful",
+      "failed": "Export failed"
+    },
     "backup": {
       "title": "Backup manuale",
       "description": "Avvia un backup manuale di tutti i link nel bucket R2 configurato",
