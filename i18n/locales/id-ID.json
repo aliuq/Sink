@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "Slug Kustom",
-        "description": "Dukungan slug personal dan sensitif huruf besar/kecil"
+        "description": "Dukung slug personal, parameter UTM, dan sensitivitas huruf"
       },
       "ai_slug": {
-        "title": "Slug AI",
-        "description": "Gunakan AI untuk menghasilkan slug"
+        "title": "Bantuan AI",
+        "description": "Buat slug dan metadata OpenGraph dari konten halaman"
       },
       "link_expiration": {
-        "title": "Kedaluwarsa Tautan",
-        "description": "Atur tanggal kedaluwarsa untuk tautan"
+        "title": "Kontrol Tautan",
+        "description": "Atur kedaluwarsa, kata sandi, dan peringatan tautan tidak aman"
       },
       "device_routing": {
-        "title": "Pengalihan Perangkat",
-        "description": "Alihkan pengguna iOS/Android ke tautan App Store"
+        "title": "Routing Cerdas",
+        "description": "Alihkan pengunjung berdasarkan perangkat atau negara"
       },
       "og_preview": {
         "title": "Pratinjau Sosial",
-        "description": "Pratinjau OpenGraph khusus untuk media sosial"
+        "description": "Sesuaikan pratinjau dengan judul, deskripsi, dan gambar"
       },
       "realtime_analytics": {
         "title": "Analitik Real-time",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "Impor/Ekspor",
-        "description": "Migrasi massal melalui file JSON"
+        "description": "Migrasi tautan via JSON dan ekspor analitik via CSV"
       },
       "multi_language": {
         "title": "Multibahasa",
-        "description": "Dukungan penuh i18n untuk dashboard"
+        "description": "Dukungan penuh i18n untuk dashboard dan halaman pengalihan"
       }
     },
     "cta": {

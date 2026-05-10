@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "Anpassbarer Slug",
-        "description": "Unterstützung für personalisierte Slugs und Beachtung von Groß-/Kleinschreibung"
+        "description": "Unterstützt personalisierte Slugs, UTM-Parameter und Groß-/Kleinschreibung"
       },
       "ai_slug": {
-        "title": "KI-Slug",
-        "description": "Nutze KI, um Slugs zu generieren"
+        "title": "KI-Unterstützung",
+        "description": "Generiere Slugs und OpenGraph-Metadaten aus Seiteninhalten"
       },
       "link_expiration": {
-        "title": "Link-Ablaufdatum",
-        "description": "Lege Ablaufdaten für deine Links fest"
+        "title": "Link-Steuerung",
+        "description": "Lege Ablaufdaten, Passwörter und Warnseiten für unsichere Links fest"
       },
       "device_routing": {
-        "title": "Geräte-Routing",
-        "description": "iOS/Android-Nutzer zu App-Store-Links weiterleiten"
+        "title": "Smart Routing",
+        "description": "Leite Besucher nach Gerät oder Land weiter"
       },
       "og_preview": {
         "title": "Social Preview",
-        "description": "Benutzerdefinierte OpenGraph-Vorschauen für soziale Medien"
+        "description": "Passe Social Previews mit Titeln, Beschreibungen und Bildern an"
       },
       "realtime_analytics": {
         "title": "Echtzeit-Analysen",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "Import/Export",
-        "description": "Massenmigration über JSON-Dateien"
+        "description": "Link-Migration per JSON und Zugriffsauswertung per CSV"
       },
       "multi_language": {
         "title": "Mehrsprachig",
-        "description": "Vollständige i18n-Unterstützung für das Dashboard"
+        "description": "Vollständige i18n-Unterstützung für Dashboard und Weiterleitungsseiten"
       }
     },
     "cta": {

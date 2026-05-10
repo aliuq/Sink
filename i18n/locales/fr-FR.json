@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "Slug personnalisable",
-        "description": "Prise en charge des slugs personnalisés et de la sensibilité à la casse"
+        "description": "Prise en charge des slugs personnalisés, des paramètres UTM et de la casse"
       },
       "ai_slug": {
-        "title": "Slug IA",
-        "description": "Utilisez l'IA pour créer des slugs"
+        "title": "Assistance IA",
+        "description": "Générez des slugs et métadonnées OpenGraph depuis le contenu des pages"
       },
       "link_expiration": {
-        "title": "Expiration des liens",
-        "description": "Définissez des dates d'expiration pour vos liens"
+        "title": "Contrôle des liens",
+        "description": "Définissez expirations, mots de passe et alertes de liens dangereux"
       },
       "device_routing": {
-        "title": "Routage par appareil",
-        "description": "Redirigez les utilisateurs iOS/Android vers les stores d'apps"
+        "title": "Routage intelligent",
+        "description": "Redirigez les visiteurs selon l'appareil ou le pays"
       },
       "og_preview": {
         "title": "Aperçu social",
-        "description": "Aperçus OpenGraph personnalisés pour les réseaux sociaux"
+        "description": "Personnalisez les aperçus avec titres, descriptions et images"
       },
       "realtime_analytics": {
         "title": "Analyses en temps réel",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "Import/Export",
-        "description": "Migration en masse via fichiers JSON"
+        "description": "Migration de liens via JSON et export analytics via CSV"
       },
       "multi_language": {
         "title": "Multilingue",
-        "description": "Support i18n complet pour le tableau de bord"
+        "description": "Support i18n complet pour le tableau de bord et les pages de redirection"
       }
     },
     "cta": {

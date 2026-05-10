@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "自定义短链",
-        "description": "支持个性化短链和大小写敏感"
+        "description": "支持个性化短链、UTM 参数和大小写敏感"
       },
       "ai_slug": {
-        "title": "AI 短链",
-        "description": "利用 AI 生成短链"
+        "title": "AI 助手",
+        "description": "根据页面内容生成短链和 OpenGraph 元数据"
       },
       "link_expiration": {
-        "title": "链接过期",
-        "description": "为您的链接设置过期日期"
+        "title": "链接控制",
+        "description": "设置过期时间、访问密码和不安全链接警告"
       },
       "device_routing": {
-        "title": "设备路由",
-        "description": "iOS/Android 用户自动跳转应用商店"
+        "title": "智能路由",
+        "description": "根据访客设备或国家重定向"
       },
       "og_preview": {
         "title": "社交预览",
-        "description": "自定义社交媒体 OpenGraph 预览"
+        "description": "自定义标题、描述和图片等社交预览"
       },
       "realtime_analytics": {
         "title": "实时分析",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "导入/导出",
-        "description": "通过 JSON 文件批量迁移"
+        "description": "通过 JSON 批量迁移链接，并通过 CSV 导出访问分析"
       },
       "multi_language": {
         "title": "多语言",
-        "description": "仪表盘完整的国际化支持"
+        "description": "仪表盘和跳转页面完整的国际化支持"
       }
     },
     "cta": {

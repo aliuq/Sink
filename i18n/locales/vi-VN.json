@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "Slug tùy chỉnh",
-        "description": "Hỗ trợ slug cá nhân hóa và phân biệt chữ hoa/thường"
+        "description": "Hỗ trợ slug cá nhân hóa, tham số UTM và phân biệt chữ hoa/thường"
       },
       "ai_slug": {
-        "title": "Slug AI",
-        "description": "Tạo slug bằng trí tuệ nhân tạo"
+        "title": "Trợ lý AI",
+        "description": "Tạo slug và metadata OpenGraph từ nội dung trang"
       },
       "link_expiration": {
-        "title": "Hết hạn liên kết",
-        "description": "Đặt ngày hết hạn cho liên kết"
+        "title": "Kiểm soát liên kết",
+        "description": "Đặt hết hạn, mật khẩu và cảnh báo liên kết không an toàn"
       },
       "device_routing": {
-        "title": "Điều hướng thiết bị",
-        "description": "Chuyển hướng người dùng iOS/Android đến App Store"
+        "title": "Điều hướng thông minh",
+        "description": "Chuyển hướng khách truy cập theo thiết bị hoặc quốc gia"
       },
       "og_preview": {
         "title": "Xem trước mạng xã hội",
-        "description": "Tùy chỉnh OpenGraph cho mạng xã hội"
+        "description": "Tùy chỉnh bản xem trước với tiêu đề, mô tả và hình ảnh"
       },
       "realtime_analytics": {
         "title": "Phân tích thời gian thực",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "Nhập/Xuất",
-        "description": "Di chuyển hàng loạt qua tệp JSON"
+        "description": "Di chuyển liên kết qua JSON và xuất phân tích qua CSV"
       },
       "multi_language": {
         "title": "Đa ngôn ngữ",
-        "description": "Hỗ trợ i18n đầy đủ cho bảng điều khiển"
+        "description": "Hỗ trợ i18n đầy đủ cho bảng điều khiển và trang chuyển hướng"
       }
     },
     "cta": {

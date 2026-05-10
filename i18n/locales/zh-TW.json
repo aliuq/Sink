@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "自定義短連結",
-        "description": "支持自訂連結和大小寫敏感"
+        "description": "支援自訂短連結、UTM 參數和大小寫敏感"
       },
       "ai_slug": {
-        "title": "AI 短連結",
-        "description": "利用 AI 生成短連結"
+        "title": "AI 助手",
+        "description": "根據頁面內容生成短連結和 OpenGraph 元資料"
       },
       "link_expiration": {
-        "title": "短連結過期",
-        "description": "為您的短連結設定過期日期"
+        "title": "連結控制",
+        "description": "設定過期時間、訪問密碼和不安全連結警告"
       },
       "device_routing": {
-        "title": "裝置路由",
-        "description": "iOS/Android 用戶自動跳轉應用商店"
+        "title": "智慧路由",
+        "description": "根據訪客裝置或國家重定向"
       },
       "og_preview": {
         "title": "社交預覽",
-        "description": "自訂社交媒體 OpenGraph 預覽"
+        "description": "自訂標題、描述和圖片等社交預覽"
       },
       "realtime_analytics": {
         "title": "即時分析",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "匯入/匯出",
-        "description": "透過 JSON 檔案批次遷移"
+        "description": "透過 JSON 批次遷移連結，並透過 CSV 匯出訪問分析"
       },
       "multi_language": {
         "title": "多語言",
-        "description": "儀表板完整的國際化支援"
+        "description": "儀表板和跳轉頁面完整的國際化支援"
       }
     },
     "cta": {

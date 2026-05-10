@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "Customizable Slug",
-        "description": "Support for personalized slugs and case sensitivity"
+        "description": "Support personalized slugs, UTM parameters, and case sensitivity"
       },
       "ai_slug": {
-        "title": "AI Slug",
-        "description": "Leverage AI to generate slugs"
+        "title": "AI Assistance",
+        "description": "Generate slugs and OpenGraph metadata from page content"
       },
       "link_expiration": {
-        "title": "Link Expiration",
-        "description": "Set expiration dates for your links"
+        "title": "Link Control",
+        "description": "Set expirations, passwords, and unsafe-link warning pages"
       },
       "device_routing": {
-        "title": "Device Routing",
-        "description": "Redirect iOS/Android users to App Store links"
+        "title": "Smart Routing",
+        "description": "Redirect visitors by device or country"
       },
       "og_preview": {
         "title": "Social Preview",
-        "description": "Custom OpenGraph previews for social media"
+        "description": "Customize social previews with titles, descriptions, and images"
       },
       "realtime_analytics": {
         "title": "Real-time Analytics",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "Import/Export",
-        "description": "Bulk migration via JSON files"
+        "description": "Bulk link migration via JSON and access analytics via CSV"
       },
       "multi_language": {
         "title": "Multi-language",
-        "description": "Full i18n support for the dashboard"
+        "description": "Full i18n support for dashboard and redirect pages"
       }
     },
     "cta": {

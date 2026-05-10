@@ -88,23 +88,23 @@
       },
       "customizable_slug": {
         "title": "Slug Personalizzabile",
-        "description": "Supporto per slug personalizzati e distinzione maiuscole/minuscole"
+        "description": "Supporta slug personalizzati, parametri UTM e distinzione maiuscole/minuscole"
       },
       "ai_slug": {
-        "title": "Slug IA",
-        "description": "Sfrutta l'IA per generare slug"
+        "title": "Assistenza IA",
+        "description": "Genera slug e metadati OpenGraph dai contenuti della pagina"
       },
       "link_expiration": {
-        "title": "Scadenza Link",
-        "description": "Imposta date di scadenza per i tuoi link"
+        "title": "Controllo Link",
+        "description": "Imposta scadenze, password e avvisi per link non sicuri"
       },
       "device_routing": {
-        "title": "Reindirizzamento Dispositivo",
-        "description": "Reindirizza gli utenti iOS/Android ai link degli store"
+        "title": "Routing Intelligente",
+        "description": "Reindirizza i visitatori per dispositivo o paese"
       },
       "og_preview": {
         "title": "Anteprima Social",
-        "description": "Anteprime OpenGraph personalizzate per i social media"
+        "description": "Personalizza anteprime con titoli, descrizioni e immagini"
       },
       "realtime_analytics": {
         "title": "Analisi in Tempo Reale",
@@ -116,11 +116,11 @@
       },
       "import_export": {
         "title": "Importa/Esporta",
-        "description": "Migrazione massiva tramite file JSON"
+        "description": "Migrazione link via JSON ed export analytics via CSV"
       },
       "multi_language": {
         "title": "Multilingua",
-        "description": "Supporto completo i18n per la dashboard"
+        "description": "Supporto i18n completo per dashboard e pagine di reindirizzamento"
       }
     },
     "cta": {
