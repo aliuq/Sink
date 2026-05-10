@@ -79,7 +79,7 @@ const form = useForm({
         cloaking: value.cloaking,
         redirectWithQuery: value.redirectWithQuery,
         password: getPasswordSubmitValue(value.password),
-        unsafe: value.unsafe || undefined,
+        unsafe: props.isEdit ? value.unsafe : value.unsafe || undefined,
         geo: Object.keys(geoRecord).length > 0 ? geoRecord : undefined,
       }
       const { link: newLink } = await useAPI<{ link: Link }>(
