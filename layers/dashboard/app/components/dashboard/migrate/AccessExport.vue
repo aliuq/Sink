@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DateRange, DateValue } from 'reka-ui'
+import { createExportFilename } from '#shared/utils/export-file'
 import { getLocalTimeZone } from '@internationalized/date'
 import { useForm } from '@tanstack/vue-form'
 import { Download, Loader } from 'lucide-vue-next'
@@ -41,7 +42,7 @@ const form = useForm({
         },
       })
 
-      saveAsCsv(csv, `sink-access-${Date.now()}.csv`)
+      saveAsCsv(csv, createExportFilename('sink-access', 'csv'))
       toast.success(t('migrate.access_export.success'))
     }
     catch (error) {

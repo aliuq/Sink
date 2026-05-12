@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AnyFieldApi, Link, LinkFormData } from '@/types'
+import type { Link, LinkFormData } from '@/types'
 import { LinkSchema, nanoid } from '#shared/schemas/link'
 import { isMaskedLinkPassword } from '#shared/utils/link-password'
 import { useForm } from '@tanstack/vue-form'
@@ -107,14 +107,7 @@ const validateComment = makeZodValidator(commentValidator)
 const validateOptionalUrl = makeZodValidator(optionalUrlValidator)
 
 const utmBuilderOpen = ref(false)
-
-function isInvalid(field: AnyFieldApi) {
-  return field.state.meta.isTouched && !field.state.meta.isValid
-}
-
-function getAriaInvalid(field: AnyFieldApi) {
-  return isInvalid(field) ? 'true' : undefined
-}
+const { isInvalid, getAriaInvalid } = useFieldHelpers()
 
 function formatErrors(errors: unknown[]): string[] {
   return errors
@@ -186,7 +179,7 @@ defineExpose({ randomSlug })
       <form.Field
         v-slot="{ field }"
         name="url"
-        :validators="{ onBlur: validateUrl }"
+        :validators="{ onBlur: validateUrl, onSubmit: validateUrl }"
       >
         <Field :data-invalid="isInvalid(field)">
           <div class="flex items-center justify-between">
@@ -224,7 +217,7 @@ defineExpose({ randomSlug })
       <form.Field
         v-slot="{ field }"
         name="slug"
-        :validators="{ onBlur: validateSlug }"
+        :validators="{ onBlur: validateSlug, onSubmit: validateSlug }"
       >
         <Field :data-invalid="isInvalid(field)">
           <div class="flex items-center justify-between">
@@ -279,7 +272,7 @@ defineExpose({ randomSlug })
       <form.Field
         v-slot="{ field }"
         name="comment"
-        :validators="{ onBlur: validateComment }"
+        :validators="{ onBlur: validateComment, onSubmit: validateComment }"
       >
         <DashboardLinksEditorFieldTextarea
           :field="field"

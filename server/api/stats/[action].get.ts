@@ -1,5 +1,7 @@
 import type { H3Event } from 'h3'
 import { QuerySchema } from '#shared/schemas/query'
+import { generateCsv } from '#shared/utils/csv'
+import { createExportFilename } from '#shared/utils/export-file'
 import { z } from 'zod'
 
 const { select } = SqlBricks
@@ -51,21 +53,8 @@ function query2sql(query: z.infer<typeof StatsExportQuerySchema>, event: H3Event
   return sql.toString()
 }
 
-function escapeCsvCell(value: unknown): string {
-  const text = String(value ?? '')
-  if (!/[",\n\r]/.test(text) && text.trim() === text)
-    return text
-
-  return `"${text.replaceAll('"', '""')}"`
-}
-
 function toCsv(rows: AccessExportRow[]): string {
-  const lines = [
-    CsvColumns.join(','),
-    ...rows.map(row => CsvColumns.map(column => escapeCsvCell(row[column])).join(',')),
-  ]
-
-  return `\uFEFF${lines.join('\n')}\n`
+  return generateCsv([...CsvColumns], rows.map(row => CsvColumns.map(column => row[column])))
 }
 
 export default eventHandler(async (event) => {
@@ -79,7 +68,7 @@ export default eventHandler(async (event) => {
   const csv = toCsv(result.data ?? [])
 
   setResponseHeader(event, 'Content-Type', 'text/csv; charset=utf-8')
-  setResponseHeader(event, 'Content-Disposition', `attachment; filename="sink-access-${Date.now()}.csv"`)
+  setResponseHeader(event, 'Content-Disposition', `attachment; filename="${createExportFilename('sink-access', 'csv')}"`)
   setResponseHeader(event, 'Cache-Control', 'no-store')
 
   return csv
