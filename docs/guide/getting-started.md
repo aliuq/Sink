@@ -14,7 +14,7 @@ Create a [fork of the Sink repository](https://github.com/miantiao-me/Sink/fork)
 ## 2. Choose where to deploy
 
 - [Cloudflare Workers](/deployment/workers) — recommended
-- [Cloudflare Pages](/deployment/pages) — also supported
+- [Cloudflare Pages](/deployment/pages) — deprecated
 
 Both use Git: Cloudflare builds from your fork and publishes the app.
 

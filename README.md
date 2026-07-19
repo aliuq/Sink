@@ -114,7 +114,7 @@ We welcome your contributions and PRs.
 
 > Video tutorial: [Watch here](https://www.youtube.com/watch?v=MkU23U2VE9E)
 
-We currently support deployment to [Cloudflare Workers](https://docs.sink.cool/deployment/workers) (recommended) and [Cloudflare Pages](https://docs.sink.cool/deployment/pages).
+We currently support deployment to [Cloudflare Workers](https://docs.sink.cool/deployment/workers) (recommended) and [Cloudflare Pages](https://docs.sink.cool/deployment/pages) (deprecated).
 
 ## ⚒️ Configuration
 

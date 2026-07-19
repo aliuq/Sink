@@ -14,7 +14,7 @@ Sink 是一款自托管短链接应用，带访问分析。它跑在 Cloudflare 
 ## 2. 选择部署方式
 
 - [Cloudflare Workers](/zh-CN/deployment/workers) — 推荐
-- [Cloudflare Pages](/zh-CN/deployment/pages) — 同样支持
+- [Cloudflare Pages](/zh-CN/deployment/pages) — 已废弃
 
 两者都通过 Git：Cloudflare 从你的 Fork 构建并发布应用。
 
