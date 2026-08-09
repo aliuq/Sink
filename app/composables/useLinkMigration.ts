@@ -4,8 +4,11 @@ import type {
   LinkMigrationRunResult,
   LinkMigrationStatus,
 } from '#shared/schemas/link-migration'
+import { useLocalStorage } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import { defineStore } from '#imports'
+
+const LINK_MIGRATION_STATUS_CACHE_KEY = 'sink:link-migration:status:v1'
 
 interface LinkMigrationTotals {
   scanned: number
@@ -26,6 +29,10 @@ function createTotals(): LinkMigrationTotals {
 }
 
 const useLinkMigrationStore = defineStore('link-migration', () => {
+  const cachedStatus = useLocalStorage<LinkMigrationStatus | null>(
+    LINK_MIGRATION_STATUS_CACHE_KEY,
+    null,
+  )
   const completed = shallowRef(false)
   const checked = shallowRef(false)
   const running = shallowRef(false)
@@ -57,15 +64,32 @@ const useLinkMigrationStore = defineStore('link-migration', () => {
     error.value = cause instanceof Error ? cause.message : String(cause)
   }
 
+  function clearCachedStatus() {
+    cachedStatus.value = null
+  }
+
+  function applyStatus(status: LinkMigrationStatus) {
+    completed.value = status.completed
+    marker.value = status.marker
+    error.value = null
+  }
+
   async function fetchStatus(): Promise<LinkMigrationStatus | null> {
     try {
+      const cached = cachedStatus.value
+      if (cached?.completed) {
+        applyStatus(cached)
+        return cached
+      }
+
+      clearCachedStatus()
       const status = await useAPI<LinkMigrationStatus>('/api/link/migration/status')
-      completed.value = status.completed
-      marker.value = status.marker
-      error.value = null
+      applyStatus(status)
+      cachedStatus.value = status.completed ? status : null
       return status
     }
     catch (cause) {
+      clearCachedStatus()
       setError(cause)
       return null
     }
@@ -88,6 +112,7 @@ const useLinkMigrationStore = defineStore('link-migration', () => {
       addPage(result)
 
       if (result.failed > 0) {
+        clearCachedStatus()
         const firstFailure = result.failedItems[0]
         error.value = firstFailure
           ? `${firstFailure.key}: ${firstFailure.reason}`
@@ -100,10 +125,14 @@ const useLinkMigrationStore = defineStore('link-migration', () => {
           completed.value = true
           await fetchStatus()
         }
+        else {
+          clearCachedStatus()
+        }
         return result.completed
       }
 
       if (!result.cursor) {
+        clearCachedStatus()
         error.value = 'Link migration stopped before receiving the next cursor'
         return false
       }
@@ -119,6 +148,7 @@ const useLinkMigrationStore = defineStore('link-migration', () => {
     running.value = true
     const promise = action()
       .catch((cause) => {
+        clearCachedStatus()
         setError(cause)
         return false
       })
@@ -145,6 +175,7 @@ const useLinkMigrationStore = defineStore('link-migration', () => {
 
   function forceMigration(): Promise<boolean> {
     return start(async () => {
+      clearCachedStatus()
       resetCurrentRun()
       return await runPages(true)
     })
