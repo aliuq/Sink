@@ -9,7 +9,7 @@ description: 通过 Git 集成将 Sink 部署到 Cloudflare Workers。
 
 [Fork Sink 仓库](https://github.com/miantiao-me/Sink/fork)。在 [Cloudflare 仪表盘](https://dash.cloudflare.com/) 中创建：
 
-| 绑定名称    | 产品                    | 是否必需 | 是什么         |
+| 绑定名称    | 产品                    | 是否必需 | 说明           |
 | ----------- | ----------------------- | -------- | -------------- |
 | `DB`        | D1 数据库               | 必需     | 保存链接       |
 | `KV`        | KV 命名空间             | 必需     | 加速跳转       |
@@ -47,11 +47,11 @@ description: 通过 Git 集成将 Sink 部署到 Cloudflare Workers。
 
 在 **Settings → Variables and Secrets** 中添加：
 
-| 变量                 | 类型     | 用途                                                 |
-| -------------------- | -------- | ---------------------------------------------------- |
-| `NUXT_SITE_TOKEN`    | 加密密钥 | 仪表盘登录密码和 API 密码（至少 8 个字符，保持稳定） |
-| `NUXT_CF_ACCOUNT_ID` | 变量     | 访问分析推荐                                         |
-| `NUXT_CF_API_TOKEN`  | 加密密钥 | 访问分析推荐                                         |
+| 变量                 | 类型     | 用途                                                               |
+| -------------------- | -------- | ------------------------------------------------------------------ |
+| `NUXT_SITE_TOKEN`    | 加密密钥 | 仪表盘登录密码和 API 密码（至少 8 个字符且不含空白字符，保持稳定） |
+| `NUXT_CF_ACCOUNT_ID` | 变量     | 访问分析推荐                                                       |
+| `NUXT_CF_API_TOKEN`  | 加密密钥 | 访问分析推荐                                                       |
 
 访问分析细节见[访问分析与近实时视图](/zh-CN/features/analytics)。完整列表见[配置参考](/zh-CN/configuration/)。
 

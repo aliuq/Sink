@@ -20,7 +20,7 @@ function routeFromRelativePath(relativePath: string): string {
 
 export default defineConfig({
   title: 'Sink Documentation',
-  description: 'A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.',
+  description: 'A Simple, Speedy, Secure, and Serverless Link Shortener with Analytics, Running Entirely on Cloudflare.',
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {
@@ -91,7 +91,7 @@ export default defineConfig({
       lang: 'zh-CN',
       link: '/zh-CN/',
       title: 'Sink 文档',
-      description: 'A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.',
+      description: '简洁、快速、安全、无服务器的短链接与访问分析应用，完全运行在 Cloudflare 上。',
       themeConfig: {
         nav: [
           { text: '指南', link: '/zh-CN/guide/getting-started' },

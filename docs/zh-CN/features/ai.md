@@ -17,8 +17,8 @@ Sink 可以使用 Cloudflare **Workers AI** 建议短链码和社交预览标题
 
 对于一个 URL，Sink 会尽量读取页面内容，并让模型返回结构化结果：
 
-- `/api/link/ai` — 短链码建议
-- `/api/link/og-ai` — 标题与描述；可用 `locale` 查询参数指定语言
+- `GET /api/link/ai?url=...` — 短链码建议
+- `GET /api/link/og-ai?url=...&locale=...` — 标题与描述；可用 `locale` 查询参数指定语言
 
 模型失败时，Sink 会回退到基于 URL 的简单建议。保存前请人工检查。
 

@@ -20,9 +20,9 @@ Both use Git: Cloudflare builds from your fork and publishes the app.
 
 ## 3. Create Cloudflare resources
 
-In the [Cloudflare dashboard](https://dash.cloudflare.com/), create the services Sink will use. Later you will **bind** them to the project — binding means “connect this database/storage to Sink under a fixed name”.
+In the [Cloudflare dashboard](https://dash.cloudflare.com/), create the services Sink will use. Later you will **bind** them to the project — binding connects a specific resource to Sink under a designated name.
 
-| Binding name | Cloudflare product       | Required?   | What it is                          |
+| Binding name | Cloudflare product       | Required?   | Description                         |
 | ------------ | ------------------------ | ----------- | ----------------------------------- |
 | `DB`         | **D1** (database)        | Yes         | Stores your links                   |
 | `KV`         | **KV** (key-value store) | Yes         | Speeds up redirects                 |
@@ -39,7 +39,7 @@ After creating D1 and KV, open each resource’s detail page and copy its **ID**
 Follow the Workers or Pages guide to connect the fork, add bindings, and set variables.
 
 ::: warning Set `NUXT_SITE_TOKEN` yourself
-This is your **dashboard login password** and the password used by API tools. Use a long random string (at least 8 characters) and keep it stable — changing it signs everyone out.
+This is your **dashboard login password** and the password used by API tools. Use a long random string (at least 8 characters, no whitespace) and keep it stable — changing it signs everyone out.
 
 If you skip it, Sink may invent a random password at build time that can change on the next deploy, and you will not be able to log in reliably.
 :::

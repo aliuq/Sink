@@ -1,12 +1,12 @@
 ---
 layout: home
 title: Sink 文档
-description: A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.
+description: 简洁、快速、安全、无服务器的短链接与访问分析应用，完全运行在 Cloudflare 上。
 
 hero:
   name: Sink
   text: 简洁 / 快速 / 安全
-  tagline: A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.
+  tagline: 简洁、快速、安全、无服务器的短链接与访问分析应用，完全运行在 Cloudflare 上。
   actions:
     - theme: brand
       text: 快速开始

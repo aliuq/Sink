@@ -33,7 +33,7 @@ Names starting with `DEPLOY_*` are only for connecting resources during deploy. 
 
 A **binding** connects a Cloudflare product to Sink under a fixed name.
 
-| Binding     | Required?   | Plain meaning                                                                                                       |
+| Binding     | Required?   | Description                                                                                                         |
 | ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
 | `DB`        | Yes         | D1 database — stores links                                                                                          |
 | `KV`        | Yes         | Fast cache for redirects (+ storage-ready flag)                                                                     |
@@ -47,7 +47,7 @@ Analytics is optional. Without it, short links and the dashboard still work; cha
 ## Required
 
 ::: warning `NUXT_SITE_TOKEN`
-Set this yourself. It is the **dashboard login password** and the **API password**. At least 8 characters; longer is better. Keep it stable.
+Set this yourself. It is the **dashboard login password** and the **API password**. At least 8 characters without whitespace; longer is better. Keep it stable.
 
 If you leave it empty, Sink may invent a random password at build time that can change on the next deploy.
 :::

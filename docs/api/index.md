@@ -40,7 +40,7 @@ Until you open **Dashboard → Links** once after deploy, most `/api/link/**` ca
 - `check` probes target URLs from the server
 - `verify` checks how you are authenticated
 - `location` returns approximate coordinates when Cloudflare provides them
-- Image upload needs R2 (JPEG/PNG/WebP/GIF, max 5 MB)
+- Image upload: `multipart/form-data` upload requiring both `file` and target link `slug`; requires R2 (JPEG/PNG/WebP/GIF, max 5 MB)
 
 ## Endpoint groups
 

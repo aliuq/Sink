@@ -1,6 +1,6 @@
 # ⚡ Sink
 
-**A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.**
+**A Simple, Speedy, Secure, and Serverless Link Shortener with Analytics, Running Entirely on Cloudflare.**
 
 [Website](https://sink.cool) · [Documentation](https://docs.sink.cool) · [API Reference](https://sink.cool/_docs/scalar)
 
@@ -42,6 +42,7 @@
 ![Nuxt](https://img.shields.io/badge/Nuxt-00DC82?style=flat&logo=nuxtdotjs&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
 ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?style=flat&logo=shadcnui&logoColor=white)
+![License](https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat)
 
 ![Hero](./public/image.png)
 
@@ -83,6 +84,10 @@ Site Token: SinkCool
   <img alt="Links" src="./docs/images/sink.cool_dashboard_links.png"/>
   <img alt="Link Analytics" src="./docs/images/sink.cool_dashboard_link_slug.png"/>
 </details>
+
+## 🔀 Sibling versions
+
+Sink and [Slite](https://github.com/miantiao-me/Slite) are sibling versions of the same link-management and analytics project. Sink runs on Cloudflare's serverless platform, while Slite runs as a local Node.js 24+/Docker process. They keep features, API contracts, and file organization compatible with each other wherever practical. Neither version is a legacy branch, and Slite is not a fork replacement for Sink.
 
 ## 🧱 Technologies Used
 
@@ -169,7 +174,11 @@ We currently do not support native MCP Server, but we have OpenAPI documentation
 3. [**Astroship**](https://astroship.web3templates.com/)
 4. [**Tailark**](https://tailark.com/)
 
+## 📄 License
+
+[AGPL-3.0-only](LICENSE) © [miantiao-me](https://github.com/miantiao-me)
+
 ## ☕ Sponsor
 
-1. [Follow Me on X(Twitter)](https://404.li/x).
-2. [Become a sponsor to on GitHub](https://github.com/sponsors/miantiao-me).
+1. [Follow Me on X (Twitter)](https://404.li/x).
+2. [Become a sponsor on GitHub](https://github.com/sponsors/miantiao-me).

@@ -20,7 +20,7 @@ If you see **“storage not ready” (HTTP 423)**, step 3 is missing. New instal
 
 ## I cannot sign in or call the API
 
-The password must match `NUXT_SITE_TOKEN` exactly (no extra spaces). Use at least 8 characters. If you never set the token, a random build-time password may have been used — set an explicit secret and redeploy.
+The password must match `NUXT_SITE_TOKEN` exactly (no extra spaces or whitespace). Use at least 8 characters. If you never set the token, a random build-time password may have been used — set an explicit secret and redeploy.
 
 If you use Cloudflare Access:
 

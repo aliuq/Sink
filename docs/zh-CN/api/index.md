@@ -40,7 +40,7 @@ Authorization: Bearer YOUR_SITE_TOKEN
 - `check` 从服务端探测目标 URL
 - `verify` 检查当前如何登录
 - `location` 在 Cloudflare 提供时返回大致坐标
-- 图片上传需要 R2（JPEG/PNG/WebP/GIF，最大 5 MB）
+- 图片上传：`multipart/form-data` 格式，必须同时提供 `file` 和目标链接 `slug`；需要 R2（JPEG/PNG/WebP/GIF，最大 5 MB）
 
 ## 端点分组
 

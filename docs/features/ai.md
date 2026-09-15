@@ -17,8 +17,8 @@ If AI is not bound, AI endpoints return **501** (“not enabled”).
 
 For a URL, Sink tries to read the page and ask the model for structured output:
 
-- `/api/link/ai` — short-code suggestion
-- `/api/link/og-ai` — title and description; optional `locale` query for preferred language
+- `GET /api/link/ai?url=...` — short-code suggestion
+- `GET /api/link/og-ai?url=...&locale=...` — title and description; optional `locale` query for preferred language
 
 If the model fails after the request starts, Sink falls back to a simple URL-based suggestion. Always review before saving.
 

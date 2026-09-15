@@ -25,7 +25,7 @@ Instance-wide demo switch. New links last five minutes and cannot be edited or d
 
 Password-protected links show a form in the browser. API clients can send the password in the `x-link-password` header.
 
-Passwords set in the dashboard/API are stored protected. Exception: very old links migrated from KV may keep legacy password values until you edit them.
+Passwords set in the dashboard/API are stored as PBKDF2 hashes. Exception: very old links migrated from KV may keep legacy password values until you edit them.
 
 The `unsafe` flag controls the warning page:
 
@@ -43,7 +43,7 @@ Visitors must confirm unsafe links without a password via `POST` with `confirm=t
 
 - **Query params:** optionally append the visitor’s `?…` to the target URL
 - **By country:** map country codes (for example `US`, `JP`) to different URLs
-- **By device:** Apple / Android targets win over default or country targets
+- **By device:** Apple iOS mobile devices (iPhone, iPad, iPod) and Android targets win over default or country targets (macOS is not included)
 
 ## Social previews (OpenGraph), bots, and cloaking
 

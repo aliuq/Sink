@@ -9,7 +9,7 @@ description: Deploy Sink on Cloudflare Workers through Git integration.
 
 Create a [fork of the Sink repository](https://github.com/miantiao-me/Sink/fork). In the [Cloudflare dashboard](https://dash.cloudflare.com/), create:
 
-| Binding name | Product                  | Required?   | What it is                |
+| Binding name | Product                  | Required?   | Description               |
 | ------------ | ------------------------ | ----------- | ------------------------- |
 | `DB`         | D1 database              | Yes         | Stores links              |
 | `KV`         | KV namespace             | Yes         | Speeds up redirects       |
@@ -47,11 +47,11 @@ Add these **build variables** (do **not** put production IDs into tracked `wrang
 
 Under **Settings → Variables and Secrets**, add:
 
-| Variable             | Type             | Purpose                                                                           |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------- |
-| `NUXT_SITE_TOKEN`    | Encrypted secret | Dashboard login password and API password (at least 8 characters, keep it stable) |
-| `NUXT_CF_ACCOUNT_ID` | Variable         | Recommended for analytics                                                         |
-| `NUXT_CF_API_TOKEN`  | Encrypted secret | Recommended for analytics                                                         |
+| Variable             | Type             | Purpose                                                                                          |
+| -------------------- | ---------------- | ------------------------------------------------------------------------------------------------ |
+| `NUXT_SITE_TOKEN`    | Encrypted secret | Dashboard login password and API password (at least 8 characters, no whitespace, keep it stable) |
+| `NUXT_CF_ACCOUNT_ID` | Variable         | Recommended for analytics                                                                        |
+| `NUXT_CF_API_TOKEN`  | Encrypted secret | Recommended for analytics                                                                        |
 
 Analytics details: [Analytics and Realtime](/features/analytics). Full list: [configuration](/configuration/).
 

@@ -24,6 +24,7 @@ export interface ListLinksOptions {
   sort?: LinkSortBy
   tag?: string
   status?: LinkStatus
+  backfillExpiration?: boolean
 }
 
 export interface ListLinksResult {
@@ -354,6 +355,10 @@ export async function d1ListLinks(event: H3Event, options: ListLinksOptions): Pr
   const rows = await db.select().from(links).where(and(statusCondition(status), tagCondition, cursorCondition)).orderBy(...order).limit(options.limit + 1)
   const hasMore = rows.length > options.limit
   const page = hasMore ? rows.slice(0, options.limit) : rows
+  if (options.backfillExpiration) {
+    for (const row of page)
+      row.expiration ??= row.effectiveExpiresAt
+  }
   const last = page.at(-1)
   return {
     links: await rowsToLinks(event, page),

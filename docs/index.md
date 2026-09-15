@@ -1,12 +1,12 @@
 ---
 layout: home
 title: Sink Documentation
-description: A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.
+description: A Simple, Speedy, Secure, and Serverless Link Shortener with Analytics, Running Entirely on Cloudflare.
 
 hero:
   name: Sink
   text: Simple / Speedy / Secure
-  tagline: A Simple / Speedy / Secure Link Shortener with Analytics, 100% run on Cloudflare.
+  tagline: A Simple, Speedy, Secure, and Serverless Link Shortener with Analytics, Running Entirely on Cloudflare.
   actions:
     - theme: brand
       text: Get Started
