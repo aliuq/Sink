@@ -13,11 +13,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'shadcn-nuxt',
   ],
-  devtools: { enabled: true },
   css: ['@/assets/css/tailwind.css'],
-  colorMode: {
-    classSuffix: '',
-  },
   runtimeConfig: {
     siteToken: process.env.NUXT_SITE_TOKEN || randomBytes(32).toString('base64url'),
     cfAccessTeamDomain: '',
@@ -106,9 +102,6 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
-    worker: {
-      format: 'es',
-    },
     optimizeDeps: {
       include: [
         '@internationalized/date',
@@ -116,15 +109,13 @@ export default defineNuxtConfig({
         '@number-flow/vue',
         '@tanstack/vue-form',
         '@unovis/vue',
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
         '@vueuse/core',
         'class-variance-authority',
         'clsx',
         'd3-geo',
         'd3-scale',
         'nanoid',
-        'qr-code-styling', // CJS
+        'qr-code-styling',
         'reka-ui',
         'reka-ui/date',
         'tailwind-merge',
@@ -158,14 +149,6 @@ export default defineNuxtConfig({
     defaultLocale: 'en-US',
   },
   shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
     prefix: '',
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
-    componentDir: './app/components/ui',
   },
 })
