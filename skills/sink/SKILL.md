@@ -51,7 +51,7 @@ Content-Type: application/json
 ```
 
 **Required**: `url`
-**Optional**: `slug` (auto-generated if omitted), `comment`, `expiration` (unix timestamp), `apple` (Apple device redirect), `google` (Android redirect), `geo` (country-specific routing map), `password`, `unsafe`, `title`, `description`, `image`, `cloaking`, `redirectWithQuery`
+**Optional**: `slug` (auto-generated if omitted), `comment`, `expiration` (unix timestamp), `apple` (Apple device redirect), `google` (Android redirect), `geo` (country-specific routing map), `password`, `unsafe`, `title`, `description`, `image`, `cloaking`, `redirectWithQuery`, `proxy`
 
 > If `NUXT_SAFE_BROWSING_DOH` is configured and `unsafe` is not explicitly set, the server auto-detects via DoH and marks unsafe links automatically.
 
@@ -107,6 +107,8 @@ Content-Type: application/json
 
 **Required**: `slug` (identifies which link to edit), `url`
 **Optional**: other fields to update
+
+> Omitted fields are cleared, so send the full record. Set `"password": ""` to remove password protection; omitting `password` keeps the stored one.
 
 **Response** (201): Same as create
 
@@ -248,6 +250,7 @@ Verify if the site token is valid.
 | `image`             | string  | No       | Custom image path                                                                    |
 | `cloaking`          | boolean | No       | Enable link cloaking                                                                 |
 | `redirectWithQuery` | boolean | No       | Append query params to destination URL (overrides global `NUXT_REDIRECT_WITH_QUERY`) |
+| `proxy`             | boolean | No       | Enable reverse proxy mode                                                            |
 | `password`          | string  | No       | Password protection for the link                                                     |
 | `unsafe`            | boolean | No       | Mark as unsafe (shows warning page before redirect)                                  |
 

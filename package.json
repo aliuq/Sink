@@ -1,7 +1,7 @@
 {
   "name": "sink",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "packageManager": "pnpm@11.11.0",
   "engines": {
@@ -44,6 +44,7 @@
     "@cloudflare/vitest-pool-workers": "^0.18.4",
     "@internationalized/date": "^3.12.2",
     "@lucide/vue": "^1.24.0",
+    "@modelcontextprotocol/server": "^2.0.0",
     "@number-flow/vue": "^0.5.1",
     "@nuxt/eslint": "^1.16.0",
     "@nuxtjs/color-mode": "^4.0.1",

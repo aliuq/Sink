@@ -71,11 +71,20 @@ description: Sink 支持的全部环境变量——做什么、填在哪、什�
 
 Workers 要在 Builds 和运行时填相同值。Pages 只填一次，然后重新部署。
 
-| 变量                              | 默认 | 用途                                 |
-| --------------------------------- | ---- | ------------------------------------ |
-| `NUXT_PUBLIC_PREVIEW_MODE`        | 空   | `true` = 演示模式（链接只活 5 分钟） |
-| `NUXT_PUBLIC_SLUG_DEFAULT_LENGTH` | `6`  | 自动生成短链码的长度                 |
-| `NUXT_PUBLIC_KV_BATCH_LIMIT`      | `50` | 导出每页条数；导入每次最多一半       |
+| 变量                              | 默认    | 用途                                                                |
+| --------------------------------- | ------- | ------------------------------------------------------------------- |
+| `NUXT_PUBLIC_PREVIEW_MODE`        | 空      | `true` = 演示模式（链接只活 5 分钟）                                |
+| `NUXT_PUBLIC_SLUG_DEFAULT_LENGTH` | `6`     | 自动生成短链码的长度                                                |
+| `NUXT_PUBLIC_KV_BATCH_LIMIT`      | `50`    | 导出每页条数；导入每次最多一半                                      |
+| `NUXT_PUBLIC_MAX_URL_LENGTH`      | `16384` | 目标 URL 最大字符数（256-24000）                                    |
+| `NUXT_PUBLIC_HOME_URL`            | 空      | 非空则把 `/` 重定向到该 URL；空则显示 Sink 首页                     |
+| `NUXT_PUBLIC_LINK_PROXY_ENABLED`  | `false` | `true` 时允许链接开启反向代理模式；关闭时存量代理链接回退为普通跳转 |
+
+`NUXT_PUBLIC_*` 的值会打进构建出的页面、同时也在运行时读取，所以修改后需要重新构建，客户端才能拿到新值。
+
+`NUXT_HOME_URL` 是 `NUXT_PUBLIC_HOME_URL` 的旧名称，目前仍然有效，建议下次调整配置时改成新名称。
+
+点击统计会把目标 URL 写入 Workers Analytics Engine，而它限制每个数据点的全部 blob 合计不超过 16 KB。当 URL 加上其他点击字段（User-Agent、Referer 等）超过这个大小时（URL 接近默认上限 16384 字符时可能发生），跳转仍然正常，但这次点击不会出现在统计里。如果统计完整比支持超长 URL 更重要，请调低 `NUXT_PUBLIC_MAX_URL_LENGTH`。
 
 ## 可选配置
 
@@ -92,7 +101,6 @@ Workers 要在 Builds 和运行时填相同值。Pages 只填一次，然后重�
 
 | 变量                                                | 用途                                                           |
 | --------------------------------------------------- | -------------------------------------------------------------- |
-| `NUXT_HOME_URL`                                     | 非空则把 `/` 重定向到该 URL；空则显示 Sink 首页                |
 | `NUXT_NOT_FOUND_REDIRECT`                           | 未知短链码跳到哪里（**始终 HTTP 302**）                        |
 | `NUXT_CF_ACCESS_TEAM_DOMAIN` + `NUXT_CF_ACCESS_AUD` | 两个都设 → 启用 [Cloudflare Access](./cloudflare-access)       |
 | `NUXT_SAFE_BROWSING_DOH`                            | 用于检查不安全域名的 DNS-over-HTTPS 地址（未设置 `unsafe` 时） |

@@ -1,18 +1,11 @@
-import { readCompletedLinkMigrationMarker } from '../services/link-store/migration'
+import { assertLinkStoreReady } from '../services/link-store/migration'
 
-const ALLOWED_MIGRATION_PATH = /^\/api\/link\/migration\/(?:status|run)\/?$/
+// Only routes that read or write the link store are gated; AI helpers, the
+// migration endpoints themselves, and unrelated APIs (verify, MCP, stats)
+// keep working while the KV-to-D1 migration is pending.
+const LINK_STORE_ROUTES = /^\/api\/link\/(?:check|count|create|delete|edit|export|import|list|query|search|tags|upsert)\/?$/
 
 export default eventHandler(async (event) => {
-  const pathname = getRequestURL(event).pathname
-  if (pathname !== '/api/link' && !pathname.startsWith('/api/link/'))
-    return
-  if (ALLOWED_MIGRATION_PATH.test(pathname))
-    return
-  if (await readCompletedLinkMigrationMarker(event.context.cloudflare.env))
-    return
-
-  throw createError({
-    status: 423,
-    statusText: 'Link migration is required',
-  })
+  if (LINK_STORE_ROUTES.test(getRequestURL(event).pathname))
+    await assertLinkStoreReady(event)
 })

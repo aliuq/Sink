@@ -3,6 +3,7 @@ import type { Link } from '#shared/schemas/link'
 import type { LinkMigrationMarker } from '#shared/schemas/link-migration'
 import { desc, eq } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
+import { createError } from 'h3'
 import { linkMigrationRuns } from '../../database/schema'
 import { buildD1LinkValues } from './d1'
 
@@ -33,6 +34,20 @@ export async function readCompletedLinkMigrationMarker(env: Cloudflare.Env): Pro
   }
 }
 
+/**
+ * Guards link reads and writes until the KV-to-D1 migration has completed, so
+ * callers never operate on a store that is not yet authoritative.
+ */
+export async function assertLinkStoreReady(event: H3Event): Promise<void> {
+  if (await readCompletedLinkMigrationMarker(event.context.cloudflare.env))
+    return
+
+  throw createError({
+    status: 423,
+    statusText: 'Link migration is required',
+  })
+}
+
 export async function insertMigratedKvLink(event: H3Event, link: Link, effectiveExpiresAt?: number): Promise<boolean> {
   const values = buildD1LinkValues(event, link, effectiveExpiresAt)
   const { DB } = event.context.cloudflare.env
@@ -40,9 +55,9 @@ export async function insertMigratedKvLink(event: H3Event, link: Link, effective
     INSERT INTO links (
       slug, id, url, comment, created_at, updated_at, expiration, title,
       description, image, apple, google, cloaking, redirect_with_query,
-      password, unsafe, geo, normalized_url, effective_expires_at
+      proxy, password, unsafe, geo, normalized_url, effective_expires_at
     )
-    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     WHERE NOT EXISTS (SELECT 1 FROM link_tombstones WHERE slug = ?)
     ON CONFLICT(slug) DO NOTHING
   `).bind(
@@ -60,6 +75,7 @@ export async function insertMigratedKvLink(event: H3Event, link: Link, effective
     values.google,
     values.cloaking === null ? null : Number(values.cloaking),
     values.redirectWithQuery === null ? null : Number(values.redirectWithQuery),
+    values.proxy === null ? null : Number(values.proxy),
     values.password,
     values.unsafe === null ? null : Number(values.unsafe),
     values.geo === null ? null : JSON.stringify(values.geo),
