@@ -8,6 +8,23 @@ import { LINK_PASSWORD_HASH_PREFIX, LINK_PASSWORD_MASK_PREFIX } from '../shared/
 
 export const db = drizzle(env.DB)
 
+export async function runScheduledTasks() {
+  const pending: Promise<unknown>[] = []
+  const context = {
+    waitUntil(promise: Promise<unknown>) {
+      pending.push(promise)
+    },
+    passThroughOnException() {},
+    props: {},
+  } as unknown as ExecutionContext
+  await exports.default.scheduled!({
+    scheduledTime: Date.now(),
+    cron: '0 0 * * *',
+    noRetry() {},
+  }, env, context)
+  await Promise.all(pending)
+}
+
 export function fetchWithAuth(path: string, options?: RequestInit): Promise<Response> {
   const request = new Request(`http://localhost${path}`, {
     ...options,
